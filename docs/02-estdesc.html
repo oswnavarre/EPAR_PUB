@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-pprs" id="toc-sec-pprs" class="nav-link" data-scroll-target="#sec-pprs"><span class="header-section-number">3.3</span> Primeros pasos en RStudio</a>
   <ul class="collapse">
   <li><a href="#creación-de-proyectos-en-rstudio" id="toc-creación-de-proyectos-en-rstudio" class="nav-link" data-scroll-target="#creación-de-proyectos-en-rstudio"><span class="header-section-number">3.3.1</span> Creación de proyectos en RStudio</a></li>
-  <li><a href="#creando-nuestros-primeros-gráficos." id="toc-creando-nuestros-primeros-gráficos." class="nav-link" data-scroll-target="#creando-nuestros-primeros-gráficos."><span class="header-section-number">3.3.2</span> Creando nuestros primeros gráficos.</a></li>
+  <li><a href="#creando-visualizaciones-con-ggplot2." id="toc-creando-visualizaciones-con-ggplot2." class="nav-link" data-scroll-target="#creando-visualizaciones-con-ggplot2."><span class="header-section-number">3.3.2</span> Creando visualizaciones con <code>ggplot2</code>.</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1047,9 +1047,32 @@ Creación de proyectos (Existing Directory)
 </figure>
 </div>
 </section>
-<section id="creando-nuestros-primeros-gráficos." class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="creando-nuestros-primeros-gráficos."><span class="header-section-number">3.3.2</span> Creando nuestros primeros gráficos.</h3>
-<p>En esta sección trabajaremos con el conjunto de datos <code>alt_almacigo.csv</code>, este conjunto de datos corresponde a las alturas de 105 plantas de tomate de 5 variedades, 20 días después de la siembra en los almácigos.</p>
+<section id="creando-visualizaciones-con-ggplot2." class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="creando-visualizaciones-con-ggplot2."><span class="header-section-number">3.3.2</span> Creando visualizaciones con <code>ggplot2</code>.</h3>
+<section id="los-datos" class="level4" data-number="3.3.2.1">
+<h4 data-number="3.3.2.1" class="anchored" data-anchor-id="los-datos"><span class="header-section-number">3.3.2.1</span> Los datos</h4>
+<p>En esta sección trabajaremos con el conjunto de datos <code>alt_almacigo.csv</code>, este conjunto de datos corresponde a las alturas de 105 plantas de tomate de 5 variedades, 20 días después de la siembra en los almácigos. Las variables presentes en el archivo son:</p>
+<ol type="1">
+<li><strong>Planta</strong>: número de planta estudiada.</li>
+<li><strong>Variedad</strong>: variedad de la planta.</li>
+<li><strong>DDS</strong>: días después de siembra.</li>
+<li><strong>Altura</strong>: altura de la planta en centímetros.</li>
+<li><strong>NHV</strong>: Número de hojas verdaderas.</li>
+</ol>
+<p>En la <a href="#sec-bars1"><span>Sección&nbsp;3.3.2.3</span></a>, explicaremos paso a paso como obtener el gráfico mostrado en la figura <a href="#fig-bars1">Figura&nbsp;<span>3.29</span></a>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bars1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-estdesc_files/figure-html/fig-bars1-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Figura&nbsp;3.29: Diagrama de barras de las variedades de tomate</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cargar-paquetes-y-leer-datos" class="level4" data-number="3.3.2.2">
+<h4 data-number="3.3.2.2" class="anchored" data-anchor-id="cargar-paquetes-y-leer-datos"><span class="header-section-number">3.3.2.2</span> Cargar paquetes y leer datos</h4>
 <p>El primer paso es guardar nuestros datos en la carpeta <code>datos</code> de nuestro proyecto, creado anteriormente, <code>r4agro</code>. Posteriormente creamos un script, en esta oportunidad guardaremos nuestro script en la carpeta <code>scripts</code> con el nombre <code>01_visualizacion.R</code>.</p>
 <p>Existen muchas formas de trabajar en un script, sin embargo, se recomienda seguir el siguiente flujo:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1074,7 +1097,7 @@ Tip
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Una vez cargados los paquetes procedemos a leer los datos. El archivo con el que vamos a trabajar es un archivo de valores separados por comas (<strong>c</strong>omma ¨<strong>s</strong>eparted <strong>v</strong>alues). Existen muchas funciones que podemos usar para leer este tipo de archivos, sin embargo, vamos a trabajar con la función <code>read.csv</code>. Para no cometer errores al momento de la lectura de los datos es importante identificar si nuestros valores efectivamente están separados por coma (,) y si el archivo utiliza el punto (.) como separador de decimales. El archivo de nuestros datos tiene como separador de los valores el punto y coma, y como separador de decimales la coma.</p>
+<p>Una vez cargados los paquetes procedemos a leer los datos. El archivo con el que vamos a trabajar es un archivo de valores separados por comas (<strong>c</strong>omma ¨<strong>s</strong>eparated <strong>v</strong>alues). Existen muchas funciones que podemos usar para leer este tipo de archivos, sin embargo, vamos a trabajar con la función <code>read.csv</code>. Para no cometer errores al momento de la lectura de los datos es importante identificar si nuestros valores efectivamente están separados por coma (,) y si el archivo utiliza el punto (.) como separador de decimales. El archivo de nuestros datos tiene como separador de los valores el punto y coma, y como separador de decimales la coma.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1109,13 +1132,109 @@ Entendiendo el código
 <div id="fig-codigo1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/codigo1.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.29: Leer datos con la función <code>read.csv()</code></figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.30: Leer datos con la función <code>read.csv()</code></figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>Una vez cargados los datos podemos empezar por ver las variables y los tipos de datos en nuestro conjunto leído, para esto podemos usar la función <code>str()</code> o la función <code>glimpse()</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><code>str()</code> permite ver la estructura interna de un objeto. Pertenece al R base.</li>
+<li><code>glimpse()</code> se utiliza para ver las columnas del conjunto de datos y mostrar una parte de los datos con respecto a cada atributo que pueda caber en una sola línea.</li>
+</ol>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   105 obs. of  5 variables:
+ $ Planta  : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Variedad: chr  "BN" "BN" "BN" "BN" ...
+ $ DDS     : int  20 20 20 20 20 20 20 20 20 20 ...
+ $ Altura  : num  2.3 1.7 3.5 2.6 0.5 2.5 3 2.8 1.7 2.8 ...
+ $ NHV     : num  0 0 1 1 0 2 1 1 0 1 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 105
+Columns: 5
+$ Planta   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…
+$ Variedad &lt;chr&gt; "BN", "BN", "BN", "BN", "BN", "BN", "BN", "BN", "BN", "BN", "…
+$ DDS      &lt;int&gt; 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 2…
+$ Altura   &lt;dbl&gt; 2.3, 1.7, 3.5, 2.6, 0.5, 2.5, 3.0, 2.8, 1.7, 2.8, 2.4, 3.4, 4…
+$ NHV      &lt;dbl&gt; 0, 0, 1, 1, 0, 2, 1, 1, 0, 1, 1, 2, 2, 2, 2, 1, 0, 1, 1, 2, 0…</code></pre>
+</div>
+</div>
+<p>La salida de la función <code>str()</code> nos muestra que nuestro objeto datos es un <em>data frame</em> de 105 observaciones y 5 variables. Las variables <strong>Planta</strong> y <strong>DDS</strong> son reconocidas como entero (<strong>int</strong>, <em>integer</em>), las variables <strong>Altura</strong> y <strong>NHV</strong> son reconocidas como número (<strong>num</strong>, <em>numeric</em>) esta clase de objetos hace referencia a los números que admiten decimales. Finalmente, la variable <strong>Variedad</strong> es reconocida como carácter (<strong>chr</strong>, <em>character</em>). Por otro lado la salida de la función <code>glimpse()</code> se diferencia en que las observaciones las reconoce como filas (<strong>Rows</strong>) y las variables como columnas (<strong>Columns</strong>), además las variables <strong>Altura</strong> y <strong>NHV</strong> son reconocidas de tipo <em>doble precisión</em> (<strong>dbl</strong>, <em>double precision</em>)</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>R tiene dos nombres para los vectores de coma flotante: <strong>dbl</strong> y <strong>num</strong>. Por un lado <strong>double</strong> es el nombre del <em>tipo</em> de datos, mientras que <strong>numeric</strong> es el nombre del <em>modo</em> de datos y además de la <em>clase</em> implícita.</p>
+<p>Aunque no es el objeto de este texto una discusión más profunda de este tema puede ser encontrada en el <a href="https://stat.ethz.ch/R-manual/R-devel/doc/manual/R-lang.html#Objects">enlace</a></p>
+</div>
+</div>
+<p>El tipo de datos para la variable <strong>Variedad</strong> que ha sido reconocido quizás no es el adecuado para análisis posteriores, puesto que la variable es una variable categórica y se recomienda cambiar el tipo de datos a <strong>factor</strong>. Más adelante realizaremos esta modificación.</p>
+</section>
+<section id="sec-bars1" class="level4" data-number="3.3.2.3">
+<h4 data-number="3.3.2.3" class="anchored" data-anchor-id="sec-bars1"><span class="header-section-number">3.3.2.3</span> La gramática del paquete <code>ggplot2</code></h4>
+<p>En R encontramos muchos sistemas para hacer gráficos, sin embargo el paquete <code>ggplot2</code> implementa la <strong>gramática de gráficos</strong> que es un sistema coherente para construir gráficos.</p>
+<p>De manera general la grámatica para construir un gráfico es:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ... , <span class="at">mapping =</span> ... ) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">GEOM</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para construir un gráfico se comienza usando la función <code>ggplot()</code>, esto nos permite definir un objeto gráfico al que le vamos a añadir <strong>capas</strong> hasta obtener el gráfico deseado. El primer argumento que se debe ingresar es el conjunto de datos, el comando <code>ggplot(data = datos)</code> crea un gráfico vacío en el que vamos a presentar algo de nuestros datos. Por el momento nuestro gráfico luce vacío porque no hemos indicado qué y cómo vamos a presentar.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ahora debemos indicar qué variables van a ser representadas. En el argumento <code>mapping</code> se indica como las variables del conjunto de datos son mapeadas a las propiedades visuales (estéticas, <strong>aesthetics</strong>) del gráfico. Las variables a ser mapeadas se definen en la función <code>aes()</code> en la que se señalan las variables que van a ser presentadas en el eje <span class="math inline">\(x\)</span> y en el eje de las <span class="math inline">\(y\)</span>. En nuestro caso solo vamos a representar el conteo de las variedades en un diagrama de barras por lo que en la función <code>aes()</code> vamos a incluir el argumento <code>x = Variedad</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Variedad)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Después de indicar los datos y las variables para nuestro gráfico, debemos indicar <strong>cómo</strong> se van a representar nuestros datos. En la gramática de <strong>ggplot2</strong> el objeto visual usado para representar datos de forma gráfica se lo conoce como <strong>geom</strong>. En nuestro caso deseamos realizar un diagrama de barras, para esto usaremos <code>geom_bar()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Variedad)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Si comparamos este último gráfico con el de la <a href="#fig-bars1">Figura&nbsp;<span>3.29</span></a>, podemos notar que el eje de las <span class="math inline">\(y\)</span> aparece la palabra “Frecuencia”. Para lograr esto, podemos usar la función <code>ylab()</code> y añadir una capa donde establecemos la etiqueta del eje <span class="math inline">\(y\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Variedad)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>En secciones posteriores, aprenderemos a cambiar el tipo de gráfico, los colores y cómo personalizar el gráfico de acuerdo a nuestras necesidades.</p>
 
 
+</section>
 </section>
 </section>
 
