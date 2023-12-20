@@ -216,13 +216,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medidas-de-tendencia-central" id="toc-medidas-de-tendencia-central" class="nav-link" data-scroll-target="#medidas-de-tendencia-central"><span class="header-section-number">3.2.1</span> Medidas de tendencia central</a></li>
   <li><a href="#cómo-escoger-la-medida-de-tendencia-central-adecuada" id="toc-cómo-escoger-la-medida-de-tendencia-central-adecuada" class="nav-link" data-scroll-target="#cómo-escoger-la-medida-de-tendencia-central-adecuada"><span class="header-section-number">3.2.2</span> ¿Cómo escoger la medida de tendencia central adecuada?</a></li>
   <li><a href="#simetría-y-sesgo" id="toc-simetría-y-sesgo" class="nav-link" data-scroll-target="#simetría-y-sesgo"><span class="header-section-number">3.2.3</span> Simetría y sesgo</a></li>
-  <li><a href="#medidas-de-dispersión" id="toc-medidas-de-dispersión" class="nav-link" data-scroll-target="#medidas-de-dispersión"><span class="header-section-number">3.2.4</span> Medidas de dispersión</a></li>
+  <li><a href="#sec-disp" id="toc-sec-disp" class="nav-link" data-scroll-target="#sec-disp"><span class="header-section-number">3.2.4</span> Medidas de dispersión</a></li>
   <li><a href="#medidas-de-posición" id="toc-medidas-de-posición" class="nav-link" data-scroll-target="#medidas-de-posición"><span class="header-section-number">3.2.5</span> Medidas de posición</a></li>
   </ul></li>
-  <li><a href="#sec-pprs" id="toc-sec-pprs" class="nav-link" data-scroll-target="#sec-pprs"><span class="header-section-number">3.3</span> Primeros pasos en RStudio</a>
+  <li><a href="#sec-pprs" id="toc-sec-pprs" class="nav-link" data-scroll-target="#sec-pprs"><span class="header-section-number">3.3</span> Primeros pasos en RStudio. Elaboración de gráficos y obtención de medidas de resumen.</a>
   <ul class="collapse">
   <li><a href="#creación-de-proyectos-en-rstudio" id="toc-creación-de-proyectos-en-rstudio" class="nav-link" data-scroll-target="#creación-de-proyectos-en-rstudio"><span class="header-section-number">3.3.1</span> Creación de proyectos en RStudio</a></li>
   <li><a href="#creando-visualizaciones-con-ggplot2." id="toc-creando-visualizaciones-con-ggplot2." class="nav-link" data-scroll-target="#creando-visualizaciones-con-ggplot2."><span class="header-section-number">3.3.2</span> Creando visualizaciones con <code>ggplot2</code>.</a></li>
+  <li><a href="#cálculo-de-medidas-numéricas-de-resumen." id="toc-cálculo-de-medidas-numéricas-de-resumen." class="nav-link" data-scroll-target="#cálculo-de-medidas-numéricas-de-resumen."><span class="header-section-number">3.3.3</span> Cálculo de medidas numéricas de resumen.</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -759,8 +760,8 @@ Tip
 </div>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="medidas-de-dispersión" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="medidas-de-dispersión"><span class="header-section-number">3.2.4</span> Medidas de dispersión</h3>
+<section id="sec-disp" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="sec-disp"><span class="header-section-number">3.2.4</span> Medidas de dispersión</h3>
 <p>Supongamos que en una empresa distribuidora de agroquímicos se forman dos equipos de ventas, la empresa ofrece un bono al equipo que tiene el mejor desempeño en las ventas mensuales promedio. En la <a href="#tbl-ventas">Tabla&nbsp;<span>3.3</span></a> se muestra el mínimo, la media, la mediana, el máximo y el total para las ventas mensuales de ambos equipos. Se observa que ambos equipos vendieron la misma cantidad total durante el mes por lo que tuvieron la misma media para las ventas mensuales. Es decir, que si se quisiera escoger al mejor equipo por el total de ventas mensuales o por el promedio de ventas mensuales no hay un equipo que haya tenido un mejor desempeño. Por otro lado el equipo 2 tiene un valor mínimo menor que el equipo 1 y en cuanto al máximo el equipo 2 tiene un valor máximo mayor al del equipo 1, esto nos llevaría a pensar que aunque ambos equipos tienen la misma media mensual la distribución de los datos para ambos equipos es diferente.</p>
 <p>En la <a href="#fig-puntosventas">Figura&nbsp;<span>3.15</span></a> se muestra un gráfico de puntos de las ventas por equipo, se ha incluido una línea punteada de color negro en la media de ambos conjuntos (<span class="math inline">\(20000.00\)</span>), con este gráfico se puede notar que las ventas del equipo 2 están más <em>dispersas</em> que las ventas del equipo 1. El histograma que se muestra en la <a href="#fig-histventas">Figura&nbsp;<span>3.16</span></a> permite visualizar la distribución de las ventas, y finalmente en el diagrama de caja de la <a href="#fig-cajaventas">Figura&nbsp;<span>3.17</span></a> se aprecia que el equipo 2 tuvo valores atípicos en sus ventas.</p>
 <div class="cell">
@@ -830,7 +831,7 @@ Tip
 </div>
 </div>
 </div>
-<p>Regresando a nuestra pregunta inicial ¿qué equipo tiene un mayor desempeño en sus ventas mensuales? Para contestar esta pregunta vamos a cuantificar la <strong>dispersión</strong> de los datos, esta cuantificación la haremos con las tres medidas de dispersión más usadas.</p>
+<p>Regresando a nuestra pregunta inicial ¿qué equipo tiene un mayor desempeño en sus ventas mensuales? Para contestar esta pregunta podemos calcular la <strong>dispersión</strong> de los datos, esta cuantificación la haremos con las tres medidas de dispersión más usadas.</p>
 <section id="rango" class="level4" data-number="3.2.4.1">
 <h4 data-number="3.2.4.1" class="anchored" data-anchor-id="rango"><span class="header-section-number">3.2.4.1</span> Rango</h4>
 <p>El rango es la medida de dispersión más fácil de calcular, resulta de la diferencia entre el máximo y el mínimo de un conjunto de datos.</p>
@@ -931,7 +932,7 @@ LI = Q_1 - 1.5IQR
 </section>
 </section>
 <section id="sec-pprs" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="sec-pprs"><span class="header-section-number">3.3</span> Primeros pasos en RStudio</h2>
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-pprs"><span class="header-section-number">3.3</span> Primeros pasos en RStudio. Elaboración de gráficos y obtención de medidas de resumen.</h2>
 <p>En la <a href="intro.html#sec-basicsR"><span>Sección&nbsp;1.5</span></a>, se presentaron algunos conceptos básicos de R utilizando la consola de R. Cuando se trabaja con conjuntos de datos, o cuando se desea guardar y compartir el trabajo realizado es conveniente usar <strong>scripts</strong>, un script es un archivo de texto que contiene los mismos comandos que ingresaría en la línea de comandos de R.</p>
 <p>Una vez abierto RStudio, para crear un script hay dos opciones. La primera es en la barra de herramientas principal escoger <code>File | New File | R Script</code>, la segunda opción es escribir la combinación de teclas (en Windows) <code>Ctrl + Shift + N</code> o <code>Cmd + Shift + N</code> (en Mac).</p>
 <p>Cuando el script está creado se puede escribir código como se visualiza a la derecha de la <a href="#fig-script">Figura&nbsp;<span>3.20</span></a>. Para ejecutar el código se puede ubicar en cualquier parte de la línea y presionar la combinación de teclas <code>Ctrl + Enter</code>o <code>Cmd + Enter</code>, otra opción es dar clic en el botón <code>Run</code> ubicado en la parte superior derecha del script (encerrada en rectángulo rojo de la <a href="#fig-script2">Figura&nbsp;<span>3.21</span></a>). Si solo es una línea de código no es necesario seleccionarla para poder ejecutarla. Al momento de ejecutar el código, el código se ejecuta en la consola (rectángulo azul de la <a href="#fig-script2">Figura&nbsp;<span>3.21</span></a>) y además se visualiza el objeto en el ambiente (rectángulo negro de la <a href="#fig-script2">Figura&nbsp;<span>3.21</span></a>).</p>
@@ -1193,7 +1194,7 @@ Tip
 <p>El tipo de datos para la variable <strong>Variedad</strong> que ha sido reconocido quizás no es el adecuado para análisis posteriores, puesto que la variable es una variable categórica y se recomienda cambiar el tipo de datos a <strong>factor</strong>. Más adelante realizaremos esta modificación.</p>
 </section>
 <section id="sec-bars1" class="level4" data-number="3.3.2.3">
-<h4 data-number="3.3.2.3" class="anchored" data-anchor-id="sec-bars1"><span class="header-section-number">3.3.2.3</span> La gramática del paquete <code>ggplot2</code></h4>
+<h4 data-number="3.3.2.3" class="anchored" data-anchor-id="sec-bars1"><span class="header-section-number">3.3.2.3</span> La gramática del paquete <code>ggplot2</code> para la construcción de gráficos</h4>
 <p>En R encontramos muchos sistemas para hacer gráficos, sin embargo el paquete <code>ggplot2</code> implementa la <strong>gramática de gráficos</strong> que es un sistema coherente para construir gráficos.</p>
 <p>De manera general la grámatica para construir un gráfico es:</p>
 <div class="cell">
@@ -1231,7 +1232,274 @@ Tip
 <p><img src="02-estdesc_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>En secciones posteriores, aprenderemos a cambiar el tipo de gráfico, los colores y cómo personalizar el gráfico de acuerdo a nuestras necesidades.</p>
+<p>Supongamos que se desea añadir color a las barras. Hay dos opciones, la primera es que todas las barras tengan un único color, la segunda opción es que cada barra tenga un color de acuerdo a la variedad</p>
+<p>Existen dos argumentos que nos pueden ayudar a lograr el objetivo: <code>fill</code> y <code>col</code>, es importante entender la diferencia de ellos cuando se trabajan con gráficos de barras.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>El argumento <code>fill</code> indica el relleno que se desea dar a las barras.</li>
+<li>El argumento <code>col</code> indica el color que rodea a las barras</li>
+</ul>
+</div>
+</div>
+<p>Para dar color a las barras usamos el argumento <code>fill</code>, si es un color único dentro del objeto geométrico escribimos <code>fill = color_deseado</code>. Por otro lado, si queremos que cada barra tenga un color diferente, dentro de <code>aes</code> incluimos el argumento <code>fill = Variable</code>. El nombre del color puede ser escrito de algunas formas posibles.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>R tiene 657 colores integrados, los nombres pueden ser obtenidos con la función <code>colors()</code>. Una guía detallada se puede encontrar en el <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">enlace</a></li>
+<li>Se puede usar también códigos hexadecimales de colores.</li>
+<li>En el <a href="https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf">enlace</a> se puede encontrar más información de manejo de colores y paletas de colores en R.</li>
+</ol>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Variedad )) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Variedad, <span class="at">fill =</span> Variedad )) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="histogramas-y-facetas" class="level4" data-number="3.3.2.4">
+<h4 data-number="3.3.2.4" class="anchored" data-anchor-id="histogramas-y-facetas"><span class="header-section-number">3.3.2.4</span> Histogramas y facetas</h4>
+<p>La variable <strong>Altura</strong> es una variable cuantitativa continua por lo que para representarla es conveniente utilizar un histograma. El objeto geométrico que nos permite obtener un histograma es <code>geom_histogram()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Al ejecutar el código, además del gráfico, en la consola obtenemos un mensaje que nos sugiere que se están usando 30 barras y nos recomienda trabajar con un argumento para cambiar el resultado. La función <code>geom_histogram()</code> por defecto trabaja con este valor de barras, otra opción adicional a la sugerencia dada por el programa es dentro del objeto indicar cuántas barras se desea incluir con la opción <code>bins =</code>. Además para notar las barras vamos a usar las opciones <code>fill</code> y <code>col</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">7</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">col =</span> <span class="st">"black"</span> ) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Debemos recordar que nuestro conjunto de datos tiene la información de 5 variedades. El histograma presentado corresponde a la altura de todas las variedades, por lo que sería conveniente separar el histograma por variedad. Para obtener un subgráfico para cada variedad, podemos usar la función <code>facet_wrap()</code> o <code>facet_grid()</code>. La función más usada es <code>facet_wrap()</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><code>facet_wrap()</code> es recomendada para separar en subgráficos por una sola variable categórica, mientras que <code>facet_grid()</code> es recomendada cuando se desea separar en subgráficos por dos variables categóricas.</li>
+<li><code>facet_grid()</code> produce una cuadrícula de gráficos para cada combinación de variables que se especifican, aún cuando algunos gráficos aparezcan vacíos.</li>
+<li><code>facet_wrap()</code> solo produce gráficos para las combinaciones de variables que tengan datos, es decir que no produce gráficos vacíos.</li>
+</ol>
+</div>
+</div>
+<p>El primer argumento de la función es una fórmula que consiste basicamente del símbolo <code>~</code> seguido por el nombre de la variable categórica.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">7</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">col =</span> <span class="st">"black"</span> ) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>) <span class="sc">+</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Variedad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="cálculo-de-medidas-numéricas-de-resumen." class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="cálculo-de-medidas-numéricas-de-resumen."><span class="header-section-number">3.3.3</span> Cálculo de medidas numéricas de resumen.</h3>
+<section id="sec-res1" class="level4" data-number="3.3.3.1">
+<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="sec-res1"><span class="header-section-number">3.3.3.1</span> Ingresando los datos (pequeños conjuntos de datos).</h4>
+<p>En esta sección vamos a presentar cómo calcular medidas númericas de resumen ingresando los datos directamente en la consola, es decir que crearemos una variable que contenga los datos.</p>
+<p>El ingeniero Yorky Gil, con la finalidad de elaborar la curva fenológica para el cultivo de girasol en condiciones del trópico húmedo, realizó una siembra de girasoles. Periódicamente realizó mediciones del número de hojas y la altura de las plantas. De los datos obtenidos por Yorky de la semana 8 se extrajo una muestra de las alturas de 20 observaciones las cuales se muestran en la <a href="#tbl-altgir">Tabla&nbsp;<span>3.4</span></a>. Con estos datos calcular la media, la mediana, la desviación estándar, el rango. Adicionalmente calcular los 3 cuartiles, y los 9 deciles.</p>
+<div id="tbl-altgir" class="anchored">
+<table class="table">
+<caption>Tabla&nbsp;3.4: Altura de girasoles en centímetros. Semana 8</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">140</td>
+<td style="text-align: center;">123</td>
+<td style="text-align: center;">110</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">137</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">117</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">112</td>
+<td style="text-align: center;">168</td>
+<td style="text-align: center;">109</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">165</td>
+<td style="text-align: center;">133</td>
+<td style="text-align: center;">178</td>
+<td style="text-align: center;">81</td>
+<td style="text-align: center;">135</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">145</td>
+<td style="text-align: center;">109</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">169</td>
+<td style="text-align: center;">132</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Este ejercicio lo resolveremos en un script llamado <code>02_numrespeq.R</code>, no es necesario cargar paquetes por lo que el primer paso para resolver este ejercicio es ingresar los datos en R. En este caso es unicámente un vector con 20 datos, vamos a llamar <strong>alt_gir</strong> a la variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>alt_gir <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">140</span>, <span class="dv">123</span>, <span class="dv">110</span>, <span class="dv">100</span>, <span class="dv">137</span>, <span class="dv">117</span>, <span class="dv">120</span>, <span class="dv">112</span>, <span class="dv">168</span>, <span class="dv">109</span>, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">165</span>, <span class="dv">133</span>, <span class="dv">178</span>, <span class="dv">81</span>, <span class="dv">135</span>, <span class="dv">145</span>, <span class="dv">109</span>, <span class="dv">78</span>, <span class="dv">169</span>, <span class="dv">132</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Una vez ingresados los datos, podemos calcular la media con la función <code>mean()</code>, la mediana con la función <code>median()</code> y la desviación estándar con la función <code>sd()</code>. Estas tres funciones reciben el vector del que se quiere calcular el valor. Además en el caso de tener valores perdidos se puede indicar que se los remueva con la opción <code>na.rm = TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 128.05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 127.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 27.8709</code></pre>
+</div>
+</div>
+<p>En el paquete <code>base</code> de R no existe una función que nos permita calcular el rango directamente, sin embargo podemos usar la definición dada en la <a href="#sec-disp"><span>Sección&nbsp;3.2.4</span></a> y utilizar las funciones <code>max()</code> y <code>min()</code> para calcular el rango como la diferencia entre el máximo y el mínimo del conjunto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(alt_gir) <span class="sc">-</span> <span class="fu">min</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100</code></pre>
+</div>
+</div>
+<p>Finalmente para calcular los percentiles utilizamos la función <code>quantile()</code>, los argumentos que recibe esta función son los datos y el percentil o percentiles que se desean calcular escritos en números decimales . Recordemos que los tres cuartiles acumulan el 25%, el 50% y el 75% respectivamente. Si solo quisieramos calcular el primer cuartil, lo podemos obtener escribiendo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fl">0.25</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   25% 
+109.75 </code></pre>
+</div>
+</div>
+<p>Para calcular los tres cuartiles de una sola vez, se puede escribir una lista de los cuartiles.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   25%    50%    75% 
+109.75 127.50 141.25 </code></pre>
+</div>
+</div>
+<p>En el caso de los deciles podemos escribir como antes o utilizar la función <code>seq()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.20</span>, <span class="fl">0.30</span>, <span class="fl">0.40</span>, <span class="fl">0.50</span>, <span class="fl">0.60</span>, <span class="fl">0.70</span>, <span class="fl">0.80</span>, <span class="fl">0.90</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  10%   20%   30%   40%   50%   60%   70%   80%   90% 
+ 98.1 109.0 111.4 118.8 127.5 133.8 137.9 149.0 168.1 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para ver la ayuda de una función podemos escribir <code>?función</code>, en este caso podemos investigar como usar la función <code>seq()</code>, escribiendo <code>?seq</code>. En el panel inferior derecho observamos una descripción detallada de como trabaja la función.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">0.10</span>, <span class="at">to =</span> <span class="fl">0.90</span>,  <span class="at">by =</span> <span class="fl">0.10</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  10%   20%   30%   40%   50%   60%   70%   80%   90% 
+ 98.1 109.0 111.4 118.8 127.5 133.8 137.9 149.0 168.1 </code></pre>
+</div>
+</div>
+</section>
+<section id="sec-res2" class="level4" data-number="3.3.3.2">
+<h4 data-number="3.3.3.2" class="anchored" data-anchor-id="sec-res2"><span class="header-section-number">3.3.3.2</span> Leyendo los datos desde un archivo en Excel, usando el pipe (<code>|&gt;</code>) (grandes conjuntos de datos).</h4>
+<p>En la <a href="#sec-bars1"><span>Sección&nbsp;3.3.2.3</span></a>, aprendimos a leer datos que se encuentran en un archivo <code>.csv</code>. Ahora trabajaremos con datos que se encuentran disponibles en un libro de Excel. El archivo se llama <code>alt_transp.xlsx</code> y la información está en la hoja de cálculo llamada <code>transplante</code>. Contiene la información de mediciones de altura hechas a plantas de tomate de cinco variedades. Las variables presentes son:</p>
+<ol type="1">
+<li><strong>Planta</strong>: número de planta.</li>
+<li><strong>Fecha_med</strong>: fecha de la medición.</li>
+<li><strong>Fecha_trans</strong>: fecha del transplante de las plantas del almácigo a los potes.</li>
+<li><strong>Variedad</strong>: variedad de las plantas.</li>
+<li><strong>Altura</strong>: altura de las plantas en centímetros.</li>
+</ol>
+<p>Existen algunos paquetes para leer información desde archivos Excel, sin embargo vamos a utilizar el paquete <code>readxl()</code>. Vamos a crear un script llamado <code>03_numresgra.R</code>. Recordemos que primero cargamos los paquetes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora leamos los datos con la función <code>read_excel()</code> del paquete <code>readxl()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>transplante <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"datos/alt_transp.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"transplante"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(transplante)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 700
+Columns: 5
+$ Planta      &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…
+$ Fecha_med   &lt;dttm&gt; 2023-06-02, 2023-06-02, 2023-06-02, 2023-06-02, 2023-06-0…
+$ Fecha_trans &lt;dttm&gt; 2023-05-27, 2023-05-27, 2023-05-27, 2023-05-27, 2023-05-2…
+$ Variedad    &lt;chr&gt; "CHR", "CHPA", "MY", "BN", "PHL", "MY", "CHR", "PHL", "BN"…
+$ Altura      &lt;dbl&gt; 7.0, 6.4, 8.0, 5.8, 6.5, 7.3, 6.0, 6.5, 6.0, 7.5, 7.0, 7.0…</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Entendiendo el código">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Entendiendo el código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="fig-codigo2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="imagenes/codigo2.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figura&nbsp;3.31: Leer datos con la función <code>read_excel()</code></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Al usar la función <code>glimpse()</code> notamos que las variables <code>Fecha_med</code> y <code>Fecha_trans</code> son reconocidas como del tipo <code>dttm</code> (<strong>date-time</strong>).</p>
 
 
 </section>
