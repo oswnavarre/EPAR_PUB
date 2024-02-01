@@ -91,7 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "más resultados en este documento",
     "search-clear-button-title": "Borrar",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar",
+    "search-submit-button-title": "Enviar",
     "search-label": "Buscar"
   }
 }</script>
@@ -970,21 +970,6 @@ LI = Q_1 - 1.5IQR
 </section>
 <section id="sec-pprs" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="sec-pprs"><span class="header-section-number">3.3</span> Primeros pasos en RStudio. Elaboración de gráficos y obtención de medidas de resumen.</h2>
-<p>En la <a href="intro.html#sec-basicsR"><span>Sección&nbsp;1.5</span></a>, se presentaron algunos conceptos básicos de R utilizando la consola de R. Cuando se trabaja con conjuntos de datos, o cuando se desea guardar y compartir el trabajo realizado es conveniente usar <strong>scripts</strong>, un script es un archivo de texto que contiene los mismos comandos que ingresaría en la línea de comandos de R.</p>
-<p>Una vez abierto RStudio, para crear un script hay dos opciones. La primera es en la barra de herramientas principal escoger <code>File | New File | R Script</code>, la segunda opción es escribir la combinación de teclas (en Windows) <code>Ctrl + Shift + N</code> o <code>Cmd + Shift + N</code> (en Mac).</p>
-<p>Cuando el script está creado se puede escribir código como se visualiza a la derecha de la <a href="#fig-script">Figura&nbsp;<span>3.20</span></a>. Para ejecutar el código se puede ubicar en cualquier parte de la línea y presionar la combinación de teclas <code>Ctrl + Enter</code>o <code>Cmd + Enter</code>, otra opción es dar clic en el botón <code>Run</code> ubicado en la parte superior derecha del script (encerrada en rectángulo rojo de la <a href="#fig-script2">Figura&nbsp;<span>3.21</span></a>). Si solo es una línea de código no es necesario seleccionarla para poder ejecutarla. Al momento de ejecutar el código, el código se ejecuta en la consola (rectángulo azul de la <a href="#fig-script2">Figura&nbsp;<span>3.21</span></a>) y además se visualiza el objeto en el ambiente (rectángulo negro de la <a href="#fig-script2">Figura&nbsp;<span>3.21</span></a>).</p>
-<div id="fig-script" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="imagenes/script.png" class="img-fluid figure-img" style="width:75.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.20: Creación de un script</figcaption>
-</figure>
-</div>
-<div id="fig-script2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="imagenes/script2.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.21: Ejecución de comandos desde un script</figcaption>
-</figure>
-</div>
 <p>En el proceso de análisis de datos, adicional a los scripts, la mayoría de ocasiones es necesario tener los datos almacenados en algún directorio de la computadora (en algunas ocasiones los datos se leen desde internet). Las tablas y los gráficos que se generen, también pueden ser almacenados en la computadora. Una forma de manejar esto de forma eficiente es trabajando con <em>directorios de trabajo</em>, un directorio de trabajo es una ruta dentro de la computadora que especifica la ubicación predeterminada de los archivos que leamos en R o que guardemos desde R.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1012,28 +997,28 @@ Tip
 <li><code>resultados</code>: para guardar las tablas resultado del análisis de datos.</li>
 <li><code>scripts</code>: en esta carpeta se guardan todos los scripts utilizados en el análisis.</li>
 </ol>
-<p>En este texto se utilizará un solo proyecto al que llamaremos <strong>r4agro</strong>. En cualquier ubicación de nuestra computadora vamos a crear la carpeta llamada <strong>r4agro</strong> y dentro de esta carpeta las carpetas <strong>datos</strong>, <strong>graficos</strong>, <strong>resultados</strong> y <strong>scripts</strong> como se muestra en la <a href="#fig-project1">Figura&nbsp;<span>3.22</span></a>.</p>
+<p>En este texto se utilizará un solo proyecto al que llamaremos <strong>r4agro</strong>. En cualquier ubicación de nuestra computadora vamos a crear la carpeta llamada <strong>r4agro</strong> y dentro de esta carpeta las carpetas <strong>datos</strong>, <strong>graficos</strong>, <strong>resultados</strong> y <strong>scripts</strong> como se muestra en la <a href="#fig-project1">Figura&nbsp;<span>3.20</span></a>.</p>
 <div id="fig-project1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/rproject1.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.22: Carpeta del proyecto r4agro</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.20: Carpeta del proyecto r4agro</figcaption>
 </figure>
 </div>
-<p>Para crear un proyecto, se debe dar clic en <code>File -&gt; New Project</code> y aparecerá la ventana mostrada en la <a href="#fig-project2">Figura&nbsp;<span>3.23</span></a>.</p>
+<p>Para crear un proyecto, se debe dar clic en <code>File -&gt; New Project</code> y aparecerá la ventana mostrada en la <a href="#fig-project2">Figura&nbsp;<span>3.21</span></a>.</p>
 <div id="fig-project2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/newproject.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.23: Crear un nuevo proyecto</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.21: Crear un nuevo proyecto</figcaption>
 </figure>
 </div>
 <p>Escogemos la opción de acuerdo a nuestras necesidades:</p>
 <ul>
-<li><strong>New Directory</strong>: escogemos esta opción si vamos a crear un nuevo directorio desde 0. Cuando se da clic, aparece una nueva ventana como se muestra en la <a href="#fig-project3">Figura&nbsp;<span>3.24</span></a></li>
+<li><strong>New Directory</strong>: escogemos esta opción si vamos a crear un nuevo directorio desde 0. Cuando se da clic, aparece una nueva ventana como se muestra en la <a href="#fig-project3">Figura&nbsp;<span>3.22</span></a></li>
 </ul>
 <div id="fig-project3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/rpoject2_np.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.24: Opción New Directory</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.22: Opción New Directory</figcaption>
 </figure>
 </div>
 <ul>
@@ -1053,35 +1038,35 @@ Creación de proyectos (Existing Directory)
 <ul>
 <li><code>File -&gt; New Project</code></li>
 <li><code>Existing Directory</code></li>
-<li>Se abre una ventana como la de la <a href="#fig-project4">Figura&nbsp;<span>3.25</span></a> y damos clic en <code>Browse</code>.</li>
-<li>Se abre una ventana en la que buscamos la ubicación de la carpeta de nuestro proyecto y damos clic en <code>Open</code> (<a href="#fig-project5">Figura&nbsp;<span>3.26</span></a>).</li>
-<li>Posteriormente, escogemos la opción <code>Create New Project</code> (<a href="#fig-project6">Figura&nbsp;<span>3.27</span></a>).</li>
-<li>Finalmente, el proyecto se crea. Identificamos que el proyecto ha sido creado porque ahora aparece el nombre del proyecto en las esquinas superior izquierda y derecha de nuestra ventana de RStudio (<a href="#fig-project7">Figura&nbsp;<span>3.28</span></a>).</li>
+<li>Se abre una ventana como la de la <a href="#fig-project4">Figura&nbsp;<span>3.23</span></a> y damos clic en <code>Browse</code>.</li>
+<li>Se abre una ventana en la que buscamos la ubicación de la carpeta de nuestro proyecto y damos clic en <code>Open</code> (<a href="#fig-project5">Figura&nbsp;<span>3.24</span></a>).</li>
+<li>Posteriormente, escogemos la opción <code>Create New Project</code> (<a href="#fig-project6">Figura&nbsp;<span>3.25</span></a>).</li>
+<li>Finalmente, el proyecto se crea. Identificamos que el proyecto ha sido creado porque ahora aparece el nombre del proyecto en las esquinas superior izquierda y derecha de nuestra ventana de RStudio (<a href="#fig-project7">Figura&nbsp;<span>3.26</span></a>).</li>
 </ul>
 </div>
 </div>
 <div id="fig-project4" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/rproject_ed.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.25: Existing Directory</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.23: Existing Directory</figcaption>
 </figure>
 </div>
 <div id="fig-project5" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/rproject_ed2.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.26: Escoger carpeta</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.24: Escoger carpeta</figcaption>
 </figure>
 </div>
 <div id="fig-project6" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/rproject_ed3.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.27: Crear proyecto</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.25: Crear proyecto</figcaption>
 </figure>
 </div>
 <div id="fig-project7" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/rproject_ed4.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.28: Proyecto creado</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.26: Proyecto creado</figcaption>
 </figure>
 </div>
 </section>
@@ -1097,13 +1082,13 @@ Creación de proyectos (Existing Directory)
 <li><strong>Altura</strong>: altura de la planta en centímetros.</li>
 <li><strong>NHV</strong>: Número de hojas verdaderas.</li>
 </ol>
-<p>En la <a href="#sec-bars1"><span>Sección&nbsp;3.3.2.3</span></a>, explicaremos paso a paso como obtener el gráfico mostrado en la figura <a href="#fig-bars1">Figura&nbsp;<span>3.29</span></a>:</p>
+<p>En la <a href="#sec-bars1"><span>Sección&nbsp;3.3.2.3</span></a>, explicaremos paso a paso como obtener el gráfico mostrado en la figura <a href="#fig-bars1">Figura&nbsp;<span>3.27</span></a>:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bars1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="02-estdesc_files/figure-html/fig-bars1-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.29: Diagrama de barras de las variedades de tomate</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.27: Diagrama de barras de las variedades de tomate</figcaption>
 </figure>
 </div>
 </div>
@@ -1170,7 +1155,7 @@ Entendiendo el código
 <div id="fig-codigo1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/codigo1.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.30: Leer datos con la función <code>read.csv()</code></figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.28: Leer datos con la función <code>read.csv()</code></figcaption>
 </figure>
 </div>
 </div>
@@ -1260,7 +1245,7 @@ Tip
 <p><img src="02-estdesc_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Si comparamos este último gráfico con el de la <a href="#fig-bars1">Figura&nbsp;<span>3.29</span></a>, podemos notar que el eje de las <span class="math inline">\(y\)</span> aparece la palabra “Frecuencia”. Para lograr esto, podemos usar la función <code>ylab()</code> y añadir una capa donde establecemos la etiqueta del eje <span class="math inline">\(y\)</span>.</p>
+<p>Si comparamos este último gráfico con el de la <a href="#fig-bars1">Figura&nbsp;<span>3.27</span></a>, podemos notar que el eje de las <span class="math inline">\(y\)</span> aparece la palabra “Frecuencia”. Para lograr esto, podemos usar la función <code>ylab()</code> y añadir una capa donde establecemos la etiqueta del eje <span class="math inline">\(y\)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Variedad)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
@@ -1561,7 +1546,7 @@ Entendiendo el código
 <div id="fig-codigo2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/codigo2.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.31: Leer datos con la función <code>read_excel()</code></figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.29: Leer datos con la función <code>read_excel()</code></figcaption>
 </figure>
 </div>
 </div>
@@ -1627,7 +1612,7 @@ Entendiendo el código
 <div id="fig-codigo3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/codigo3.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.32: Resumiendo datos con funciones <code>dplyr</code></figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.30: Resumiendo datos con funciones <code>dplyr</code></figcaption>
 </figure>
 </div>
 </div>
@@ -1654,7 +1639,7 @@ Entendiendo el código
 <div id="fig-tabla" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="imagenes/tbl_alt_var_fec.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figura&nbsp;3.33: Viendo una tabla</figcaption>
+<figcaption class="figure-caption">Figura&nbsp;3.31: Viendo una tabla</figcaption>
 </figure>
 </div>
 <p>Antes de aprender a guardar la tabla, vamos a crear una variable nueva en el conjunto de datos <code>transplante</code>. La variable que crearemos se llama <code>DDT</code> (días después de transplante). Esta variable resulta de la diferencia entre la fecha de medición y la fecha de transplante. Para crear nuevas variables en el conjunto de datos podemos usar la función <code>mutate()</code> de <code>dplyr</code>.</p>

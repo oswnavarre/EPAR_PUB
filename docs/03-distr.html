@@ -57,7 +57,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "más resultados en este documento",
     "search-clear-button-title": "Borrar",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar",
+    "search-submit-button-title": "Enviar",
     "search-label": "Buscar"
   }
 }</script>
@@ -171,9 +171,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Indice de contenidos</h2>
    
   <ul>
-  <li><a href="#definiciones" id="toc-definiciones" class="nav-link active" data-scroll-target="#definiciones"><span class="header-section-number">4.1</span> Definiciones</a></li>
-  <li><a href="#distribución-normal" id="toc-distribución-normal" class="nav-link" data-scroll-target="#distribución-normal"><span class="header-section-number">4.2</span> Distribución Normal</a></li>
-  <li><a href="#distribución-t-de-student" id="toc-distribución-t-de-student" class="nav-link" data-scroll-target="#distribución-t-de-student"><span class="header-section-number">4.3</span> Distribución <span class="math inline">\(t\)</span> de Student</a></li>
+  <li><a href="#operaciones-de-conjuntos" id="toc-operaciones-de-conjuntos" class="nav-link active" data-scroll-target="#operaciones-de-conjuntos"><span class="header-section-number">4.1</span> Operaciones de conjuntos</a></li>
+  <li><a href="#definiciones" id="toc-definiciones" class="nav-link" data-scroll-target="#definiciones"><span class="header-section-number">4.2</span> Definiciones</a></li>
+  <li><a href="#distribución-normal" id="toc-distribución-normal" class="nav-link" data-scroll-target="#distribución-normal"><span class="header-section-number">4.3</span> Distribución Normal</a></li>
+  <li><a href="#distribución-t-de-student" id="toc-distribución-t-de-student" class="nav-link" data-scroll-target="#distribución-t-de-student"><span class="header-section-number">4.4</span> Distribución <span class="math inline">\(t\)</span> de Student</a></li>
   </ul>
 </nav>
     </div>
@@ -197,14 +198,58 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="definiciones" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="definiciones"><span class="header-section-number">4.1</span> Definiciones</h2>
+<p>En muchas situaciones cotidianas se utiliza con frecuencia el termino <em>probabilidad</em>, este término es utilizado para expresar la posibilidad de obtener un resultado. Para sucesos aleatorios, la probabilidad de ese resultado se define como la proporción (frecuencia relativa) de veces que se obtiene el resultado en una extensa secuencia de observaciones. Aunque la probabilidad de un resultado cualquiera es una frecuencia relativa es decir que es un número entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span> inclusive, es común representar la probabilidad como un porcentaje. Por ejemplo cuando leemos que en un día determinado la probabilidad de que llueva es del <span class="math inline">\(70\%\)</span>, se interpreta que en muchos días observados en el pasado con condiciones climáticas similares en <span class="math inline">\(70\%\)</span> de esos días hubo precipitaciones.</p>
+<p>Para definir formalmente la probabilidad, debemos tomar en cuenta algunas otras definiciones.</p>
+<div id="def-exper" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 4.1 </strong></span>Un experimento es un procedimiento o proceso cuyos resultados son conocidos pero no predecibles.</p>
+</div>
+<div id="def-espmue" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 4.2 </strong></span>Se define al espacio muestral como el conjunto de todos los posibles resultados de un experimento. El espacio muestral se representa con la letra griega Omega <span class="math inline">\(\Omega\)</span>.</p>
+</div>
+<div id="def-event" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 4.3 </strong></span>Cualquier subconjunto del espacio muestral es conocido como un evento.</p>
+</div>
+<div id="def-prob" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 4.4 </strong></span>Si un experimento tiene <span class="math inline">\(n(\Omega)\)</span> resultados posibles y un evento <span class="math inline">\(E\)</span> tiene <span class="math inline">\(n(E)\)</span> resultados. La probabilidad de <span class="math inline">\(E\)</span>, denotada por <span class="math inline">\(P(E)\)</span> se define por: <span class="math display">\[P(E) = \dfrac{n(E)}{n(\Omega)} = \dfrac{\text{número de resultados en } E}{\text{número de resultados en } \Omega}\]</span></p>
+</div>
+<section id="operaciones-de-conjuntos" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="operaciones-de-conjuntos"><span class="header-section-number">4.1</span> Operaciones de conjuntos</h2>
+<p>Supongamos dos eventos <span class="math inline">\(E_1\)</span> y <span class="math inline">\(E_2\)</span> que son subconjunto del espacio muestral <span class="math inline">\(\Omega\)</span>.</p>
+<div id="def-union" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 4.5 </strong></span>El evento <span class="math inline">\(E_1 \cup E_2\)</span>, consiste de todos los resultados presentes en <span class="math inline">\(E_1\)</span> <strong>o</strong> <span class="math inline">\(E_2\)</span></p>
+</div>
+<div id="def-inter" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 4.6 </strong></span>El evento <span class="math inline">\(E_1 \cap E_2\)</span>, consiste de todos los resultados presentes en <span class="math inline">\(E_1\)</span> <strong>y</strong> <span class="math inline">\(E_2\)</span></p>
+</div>
+<div id="def-compl" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 4.7 </strong></span>El complemento del evento <span class="math inline">\(E_1\)</span> denotado por <span class="math inline">\(\overline{E_1}\)</span> o <span class="math inline">\(E_1^C\)</span>, consiste de todos los resultados de <span class="math inline">\(\Omega\)</span> que no pertenecen a <span class="math inline">\(E_1\)</span></p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Axiomas de la Probabilidad">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Axiomas de la Probabilidad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(P\left(\Omega\right)=1\)</span></li>
+<li>Para cualquier evento <span class="math inline">\(E\)</span>, <span class="math inline">\(0 \leq P(E) \leq 1\)</span>.</li>
+<li>Para cualquier evento <span class="math inline">\(E\)</span>, <span class="math inline">\(P(E^C)=1-P(E)\)</span></li>
+</ol>
+</div>
+</div>
 </section>
-<section id="distribución-normal" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="distribución-normal"><span class="header-section-number">4.2</span> Distribución Normal</h2>
+<section id="definiciones" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="definiciones"><span class="header-section-number">4.2</span> Definiciones</h2>
 </section>
-<section id="distribución-t-de-student" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="distribución-t-de-student"><span class="header-section-number">4.3</span> Distribución <span class="math inline">\(t\)</span> de Student</h2>
+<section id="distribución-normal" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="distribución-normal"><span class="header-section-number">4.3</span> Distribución Normal</h2>
+</section>
+<section id="distribución-t-de-student" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="distribución-t-de-student"><span class="header-section-number">4.4</span> Distribución <span class="math inline">\(t\)</span> de Student</h2>
 
 
 </section>
