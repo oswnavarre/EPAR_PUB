@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Análisis de Datos en Agricultura con R y RStudio - 3&nbsp; Estadística Descriptiva</title>
+<title>3&nbsp; Estadística Descriptiva – Análisis de Datos en Agricultura con R y RStudio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -71,10 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7da2cd4d758cc02249fc92bd4cce19a4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,8 +104,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Buscar"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -141,13 +145,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-estdesc.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estadística Descriptiva</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -235,7 +239,7 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
     <h2 id="toc-title">Indice de contenidos</h2>
    
   <ul>
@@ -280,21 +284,25 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-pprs" id="toc-sec-pprs" class="nav-link" data-scroll-target="#sec-pprs"><span class="header-section-number">3.3</span> Primeros pasos en RStudio. Elaboración de gráficos y obtención de medidas de resumen.</a>
   <ul>
-  <li><a href="#creación-de-proyectos-en-rstudio" id="toc-creación-de-proyectos-en-rstudio" class="nav-link" data-scroll-target="#creación-de-proyectos-en-rstudio"><span class="header-section-number">3.3.1</span> Creación de proyectos en RStudio</a></li>
-  <li><a href="#creando-visualizaciones-con-ggplot2." id="toc-creando-visualizaciones-con-ggplot2." class="nav-link" data-scroll-target="#creando-visualizaciones-con-ggplot2."><span class="header-section-number">3.3.2</span> Creando visualizaciones con <code>ggplot2</code>.</a>
+  <li><a href="#sec-projectR" id="toc-sec-projectR" class="nav-link" data-scroll-target="#sec-projectR"><span class="header-section-number">3.3.1</span> Creación de proyectos en RStudio</a>
   <ul class="collapse">
-  <li><a href="#los-datos" id="toc-los-datos" class="nav-link" data-scroll-target="#los-datos"><span class="header-section-number">3.3.2.1</span> Los datos</a></li>
-  <li><a href="#cargar-paquetes-y-leer-datos" id="toc-cargar-paquetes-y-leer-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-leer-datos"><span class="header-section-number">3.3.2.2</span> Cargar paquetes y leer datos</a></li>
-  <li><a href="#sec-bars1" id="toc-sec-bars1" class="nav-link" data-scroll-target="#sec-bars1"><span class="header-section-number">3.3.2.3</span> La gramática del paquete <code>ggplot2</code> para la construcción de gráficos</a></li>
-  <li><a href="#histogramas-y-facetas" id="toc-histogramas-y-facetas" class="nav-link" data-scroll-target="#histogramas-y-facetas"><span class="header-section-number">3.3.2.4</span> Histogramas y facetas</a></li>
-  </ul></li>
-  <li><a href="#cálculo-de-medidas-numéricas-de-resumen." id="toc-cálculo-de-medidas-numéricas-de-resumen." class="nav-link" data-scroll-target="#cálculo-de-medidas-numéricas-de-resumen."><span class="header-section-number">3.3.3</span> Cálculo de medidas numéricas de resumen.</a>
-  <ul class="collapse">
-  <li><a href="#sec-res1" id="toc-sec-res1" class="nav-link" data-scroll-target="#sec-res1"><span class="header-section-number">3.3.3.1</span> Ingresando los datos (pequeños conjuntos de datos).</a></li>
-  <li><a href="#sec-res2" id="toc-sec-res2" class="nav-link" data-scroll-target="#sec-res2"><span class="header-section-number">3.3.3.2</span> Leyendo los datos desde un archivo en Excel, usando el pipe (<code>|&gt;</code>) (grandes conjuntos de datos).</a></li>
-  <li><a href="#bono-haciendo-un-gráfico-de-líneas" id="toc-bono-haciendo-un-gráfico-de-líneas" class="nav-link" data-scroll-target="#bono-haciendo-un-gráfico-de-líneas"><span class="header-section-number">3.3.3.3</span> Bono: Haciendo un gráfico de líneas</a></li>
+  <li><a href="#creación-de-proyectos-existing-directory" id="toc-creación-de-proyectos-existing-directory" class="nav-link" data-scroll-target="#creación-de-proyectos-existing-directory"><span class="header-section-number">3.3.1.1</span> Creación de proyectos (Existing Directory)</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#creando-visualizaciones-con-ggplot2." id="toc-creando-visualizaciones-con-ggplot2." class="nav-link" data-scroll-target="#creando-visualizaciones-con-ggplot2."><span class="header-section-number">3.4</span> Creando visualizaciones con <code>ggplot2</code>.</a>
+  <ul>
+  <li><a href="#los-datos" id="toc-los-datos" class="nav-link" data-scroll-target="#los-datos"><span class="header-section-number">3.4.1</span> Los datos</a></li>
+  <li><a href="#cargar-paquetes-y-leer-datos" id="toc-cargar-paquetes-y-leer-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-leer-datos"><span class="header-section-number">3.4.2</span> Cargar paquetes y leer datos</a></li>
+  <li><a href="#sec-bars1" id="toc-sec-bars1" class="nav-link" data-scroll-target="#sec-bars1"><span class="header-section-number">3.4.3</span> La gramática del paquete <code>ggplot2</code> para la construcción de gráficos</a></li>
+  <li><a href="#diagrama-de-cajas" id="toc-diagrama-de-cajas" class="nav-link" data-scroll-target="#diagrama-de-cajas"><span class="header-section-number">3.4.4</span> Diagrama de cajas</a></li>
+  <li><a href="#histogramas-y-facetas" id="toc-histogramas-y-facetas" class="nav-link" data-scroll-target="#histogramas-y-facetas"><span class="header-section-number">3.4.5</span> Histogramas y facetas</a></li>
+  </ul></li>
+  <li><a href="#cálculo-de-medidas-numéricas-de-resumen." id="toc-cálculo-de-medidas-numéricas-de-resumen." class="nav-link" data-scroll-target="#cálculo-de-medidas-numéricas-de-resumen."><span class="header-section-number">3.5</span> Cálculo de medidas numéricas de resumen.</a>
+  <ul>
+  <li><a href="#sec-res1" id="toc-sec-res1" class="nav-link" data-scroll-target="#sec-res1"><span class="header-section-number">3.5.1</span> Ingresando los datos (pequeños conjuntos de datos).</a></li>
+  <li><a href="#sec-res2" id="toc-sec-res2" class="nav-link" data-scroll-target="#sec-res2"><span class="header-section-number">3.5.2</span> Leyendo los datos desde un archivo en Excel, usando el pipe (<code>|&gt;</code>) (grandes conjuntos de datos).</a></li>
+  </ul></li>
+  <li><a href="#bono-haciendo-un-gráfico-de-líneas" id="toc-bono-haciendo-un-gráfico-de-líneas" class="nav-link" data-scroll-target="#bono-haciendo-un-gráfico-de-líneas"><span class="header-section-number">3.6</span> Bono: Haciendo un gráfico de líneas</a></li>
   <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios">Ejercicios</a></li>
   </ul>
 </nav>
@@ -350,14 +358,14 @@ Importante
 </ol>
 <p>Supongamos que en un estudio se utilizaron 50 semillas de 3 variedades de tomate. En la <a href="#tbl-cars" class="quarto-xref">Tabla&nbsp;<span>3.1</span></a> se muestra un resumen del número de semillas usadas de cada variedad, esta tabla es un ejemplo de una tabla para variables cualitativas. De la tabla se deduce que la menor proporción de semillas utilizadas corresponde a la variedad 2, mientras que la mayor proporción de semillas corresponde a la variedad 1.</p>
 <div class="cell">
-<div id="tbl-cars" class="cell quarto-float anchored">
+<div id="tbl-cars" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;3.1: Ejemplo de tabla para variables cualitativas
 </figcaption>
 <div aria-describedby="tbl-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Categoría</th>
@@ -404,14 +412,14 @@ Tabla&nbsp;3.1: Ejemplo de tabla para variables cualitativas
 <p>El ingeniero Yorky Gil realizó un experimento con el fin de estimar una curva fenológica para el cultivo de girasol en condiciones del trópico humedo. Recogió datos durante 8 semanas de la altura en centímetros y el número de hojas de las plantas de girasol de determinada variedad. En la <a href="#tbl-girasoles" class="quarto-xref">Tabla&nbsp;<span>3.2</span></a> se muestra la distribución de frecuencias de la altura para la semana 8. Este es un ejemplo de una tabla de frecuencias para variables cuantitativas. En secciones posteriores discutiremos paso a paso la elaboración de esta tabla.</p>
 <p>De la interpretación de esta tabla se obtienen datos importantes. Si nos fijamos en la sexta clase podemos afirmar que en la semana <span class="math inline">\(8\)</span>, <span class="math inline">\(78\)</span> observaciones es decir el <span class="math inline">\(32.4\%\)</span> de las plantas tenían una altura entre <span class="math inline">\(130\)</span> y <span class="math inline">\(154\)</span> centímetros. De la misma clase podemos decir que <span class="math inline">\(196\)</span> plantas o el <span class="math inline">\(81.3 \%\)</span> tienen una altura menor a <span class="math inline">\(154\)</span> centímetros. En la última clase se observa que la frecuencia absoluta acumulada es de <span class="math inline">\(241\)</span>, este número corresponde al <span class="math inline">\(100\%\)</span> de las observaciones.</p>
 <div class="cell">
-<div id="tbl-girasoles" class="cell quarto-float anchored">
+<div id="tbl-girasoles" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-girasoles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;3.2: Ejemplo de tabla de frecuencia para variables cuantitativas
 </figcaption>
 <div aria-describedby="tbl-girasoles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Clase</th>
@@ -510,7 +518,7 @@ Tabla&nbsp;3.2: Ejemplo de tabla de frecuencia para variables cuantitativas
 <p>Un gráfico de barras es la representación visual de una tabla de distribución de frecuencias. En el eje de las <span class="math inline">\(x\)</span> se colocan los niveles de la variable cualitativa y en el eje de las <span class="math inline">\(y\)</span> los valores de las frecuencias o de los porcentajes. En la <a href="#fig-grafico1" class="quarto-xref">Figura&nbsp;<span>3.1</span></a> se presenta el gráfico de barras para la <a href="#tbl-cars" class="quarto-xref">Tabla&nbsp;<span>3.1</span></a>. Mientras que en la <a href="#fig-tablabar" class="quarto-xref">Figura&nbsp;<span>3.2</span></a> se muestra la relación entre estos dos objetos. En general cuando se tiene una variable categórica <strong>única</strong> que se quiere desglosar y cuantificar por cada categoría este es el tipo de gráfico adecuado.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-grafico1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-grafico1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-grafico1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-grafico1-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672">
@@ -522,7 +530,7 @@ Figura&nbsp;3.1: Gráfico de Barras para la <a href="#tbl-cars" class="quarto-xr
 </div>
 </div>
 </div>
-<div id="fig-tablabar" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tablabar" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tablabar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/tabla_barplot.png" class="img-fluid figure-img">
@@ -535,10 +543,10 @@ Figura&nbsp;3.2: Relación entre la <a href="#tbl-cars" class="quarto-xref">Tabl
 </section>
 <section id="diagrama-de-barras-agrupadas" class="level4" data-number="3.1.3.2">
 <h4 data-number="3.1.3.2" class="anchored" data-anchor-id="diagrama-de-barras-agrupadas"><span class="header-section-number">3.1.3.2</span> Diagrama de barras agrupadas</h4>
-<p>En un diagrama de barras agrupadas, al igual que en un diagrama de barras, se muestran los conteos para un grupo, pero además se desglosa para una variable cuantitativa adicional. Por ejemplo en la <a href="#fig-grafico2" class="quarto-xref">Figura&nbsp;<span>3.3</span></a> se muestran los porcentajes de nitrógeno, fosforo y potasio para cuatro variedades diferentes de maíz.</p>
+<p>En un diagrama de barras agrupadas, al igual que en un diagrama de barras, se muestran los conteos para un grupo, pero además se desglosa para una variable cuantitativa adicional. Por ejemplo en la <a href="#fig-grafico2" class="quarto-xref">Figura&nbsp;<span>3.3</span></a> se muestran los porcentajes de nitrógeno (N), fósforo (P) y potasio (K) para cuatro variedades diferentes de maíz.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-grafico2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-grafico2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-grafico2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-grafico2-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672">
@@ -553,10 +561,10 @@ Figura&nbsp;3.3: Diagrama de Barras Agrupadas
 </section>
 <section id="diagrama-de-barras-apiladas" class="level4" data-number="3.1.3.3">
 <h4 data-number="3.1.3.3" class="anchored" data-anchor-id="diagrama-de-barras-apiladas"><span class="header-section-number">3.1.3.3</span> Diagrama de barras apiladas</h4>
-<p>Una variación muy útil de los diagramas de barras son los diagramas de barras apiladas. A diferencia de los diagramas de barras agrupadas en este caso se apilan las barras una sobre otra. Esto es útil cuando las barras suman un <span class="math inline">\(100 \%\)</span>. En la <a href="#fig-grafico3" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> se muestra la relación Humedad, Materia Seca para cuatro variedades de maíz.</p>
+<p>Una variación muy útil de los diagramas de barras son los diagramas de barras apiladas. A diferencia de los diagramas de barras agrupadas en este caso se apilan las barras una sobre otra. Esto es útil cuando las barras suman <span class="math inline">\(100 \%\)</span>, o la suma de los porcentajes o frecuencias es constante. En la <a href="#fig-grafico3" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> se muestra la relación Humedad, Materia Seca para cuatro variedades de maíz.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-grafico3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-grafico3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-grafico3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-grafico3-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672">
@@ -575,7 +583,7 @@ Figura&nbsp;3.4: Diagrama de Barras Apiladas
 <p>Es importante tener en cuenta que un histograma no debe ser usado para hacer inferencias ya que nos dan una rápida visión de la distribución de los datos y solo sugieren información sobre ciertas características. En la <a href="#fig-histograma1" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> se aprecia el histograma de la altura de los girasoles. En la figura <a href="#fig-tablahist" class="quarto-xref">Figura&nbsp;<span>3.6</span></a> se esquematiza la relación entre la tabla de frecuencias y el histograma de frecuencias absolutas.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-histograma1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-histograma1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-histograma1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-histograma1-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672">
@@ -587,7 +595,7 @@ Figura&nbsp;3.5: Histograma de la altura de girasoles
 </div>
 </div>
 </div>
-<div id="fig-tablahist" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tablahist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tablahist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/table_to_hist.png" class="img-fluid figure-img">
@@ -600,7 +608,7 @@ Figura&nbsp;3.6: Relación entre la <a href="#tbl-girasoles" class="quarto-xref"
 <p>En algunas ocasiones es de interés graficar las frecuencias relativas. El histograma de las frecuencias relativas tiene la misma forma que el histograma de las frecuencias absolutas, pero las alturas ahora corresponden a las frecuencias relativas. En la <a href="#fig-histfr" class="quarto-xref">Figura&nbsp;<span>3.7</span></a> se muestra el histograma de frecuencias relativas para las alturas de los girasoles. Se puede apreciar que este histograma tiene la misma forma que el histograma de la <a href="#fig-histograma1" class="quarto-xref">Figura&nbsp;<span>3.5</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-histfr" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-histfr" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-histfr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-histfr-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672">
@@ -612,7 +620,7 @@ Figura&nbsp;3.7: Histograma de frecuencias relativas para las alturas de los gir
 </div>
 </div>
 </div>
-<div id="fig-tablahistfr" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tablahistfr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tablahistfr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/table_to_hist_REL.png" class="img-fluid figure-img">
@@ -628,7 +636,7 @@ Figura&nbsp;3.8: Relación entre la <a href="#tbl-girasoles" class="quarto-xref"
 <p>Un gráfico de densidad es una representación de la distribución de una variable numérica. Es una versión suavizada del histograma. Los gráficos de densidad son usados para estudiar la distribución de una variable. Los picos de un gráfico de densidad muestran donde los se concentran los valores en el rango de la variable. Una ventaja que tienen los gráficos de densidad sobre los histogramas es que son mejores para determinar la forma de la distribución de los datos porque no se ven afectados por el número de barras usadas.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-density" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-density" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-density-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672">
@@ -647,7 +655,7 @@ Figura&nbsp;3.9: Gráfico de Densidad para la altura de los girasoles
 <p>Para la interpretación de un diagrama de caja principalmente hay que fijarse en la línea central de la caja. Este valor corresponde a la mediana, en secciones posteriores desarrollaremos este concepto, por el momento podemos decir que el <span class="math inline">\(50 \%\)</span> de los valores son menores a esta cantidad. Cuando la distribución de los datos es simétrica, la mediana se ubicará justo en el centro de la caja. Cuando la distribución de los datos es sesgada, la mediana estará posicionada más cerca de la parte superior o inferior de la caja. Los puntos que se ven sobre o bajo la caja son considerados valores atípicos. En secciones subsiguientes se desarrollarán en detalle los conceptos de sesgo, simetría y valores atípicos.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-boxplot" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-boxplot-1.png" class="img-fluid figure-img" style="width:70.0%" data-fig-pos="H">
@@ -665,7 +673,7 @@ Figura&nbsp;3.10: Diagrama de Caja para la Altura de plantas de caña de azúcar
 <p>Estos gráficos son útiles para mostrar la tendencia de una variable cuantitativa en el tiempo. En la <a href="#fig-lineas" class="quarto-xref">Figura&nbsp;<span>3.11</span></a> se muestra la evolución de la altura de las plantas de caña separadas por tratamiento.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-lineas" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-lineas" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lineas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-lineas-1.png" class="img-fluid figure-img" style="width:70.0%" data-fig-pos="H">
@@ -869,7 +877,7 @@ Tip
 <li>Cuando la distribución es sesgada a la izquierda se cumple que <span class="math inline">\(\bar{x} &lt; \tilde{x} &lt; Mo\)</span>. Con los mismos códigos de colores anteriores podemos observar la ubicación de estos valores en la <a href="#fig-izquierda" class="quarto-xref">Figura&nbsp;<span>3.13</span></a>.</li>
 <li>Cuando la distribución es simétrica se cumple que <span class="math inline">\(\bar{x} = \tilde{x} = Mo\)</span>.</li>
 </ol>
-<div id="fig-derecha" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-derecha" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-derecha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/derecha.png" class="img-fluid figure-img">
@@ -879,7 +887,7 @@ Figura&nbsp;3.12: Distribución sesgada a a la derecha
 </figcaption>
 </figure>
 </div>
-<div id="fig-izquierda" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-izquierda" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-izquierda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/izquierda.png" class="img-fluid figure-img">
@@ -889,7 +897,7 @@ Figura&nbsp;3.13: Distribución sesgada a a la izquierda
 </figcaption>
 </figure>
 </div>
-<div id="fig-simetria" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-simetria" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simetria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/simetrico.png" class="img-fluid figure-img">
@@ -906,14 +914,14 @@ Figura&nbsp;3.14: Distribución Simétrica
 <p>Supongamos que en una empresa distribuidora de agroquímicos se forman dos equipos de ventas, la empresa ofrece un bono al equipo que tiene el mejor desempeño en las ventas mensuales promedio. En la <a href="#tbl-ventas" class="quarto-xref">Tabla&nbsp;<span>3.3</span></a> se muestra el mínimo, la media, la mediana, el máximo y el total para las ventas mensuales de ambos equipos. Se observa que ambos equipos vendieron la misma cantidad total durante el mes por lo que tuvieron la misma media para las ventas mensuales. Es decir, que si se quisiera escoger al mejor equipo por el total de ventas mensuales o por el promedio de ventas mensuales no hay un equipo que haya tenido un mejor desempeño. Por otro lado el equipo 2 tiene un valor mínimo menor que el equipo 1 y en cuanto al máximo el equipo 2 tiene un valor máximo mayor al del equipo 1, esto nos llevaría a pensar que aunque ambos equipos tienen la misma media mensual la distribución de los datos para ambos equipos es diferente.</p>
 <p>En la <a href="#fig-puntosventas" class="quarto-xref">Figura&nbsp;<span>3.15</span></a> se muestra un gráfico de puntos de las ventas por equipo, se ha incluido una línea punteada de color negro en la media de ambos conjuntos (<span class="math inline">\(20000.00\)</span>), con este gráfico se puede notar que las ventas del equipo 2 están más <em>dispersas</em> que las ventas del equipo 1. El histograma que se muestra en la <a href="#fig-histventas" class="quarto-xref">Figura&nbsp;<span>3.16</span></a> permite visualizar la distribución de las ventas, y finalmente en el diagrama de caja de la <a href="#fig-cajaventas" class="quarto-xref">Figura&nbsp;<span>3.17</span></a> se aprecia que el equipo 2 tuvo valores atípicos en sus ventas.</p>
 <div class="cell">
-<div id="tbl-ventas" class="cell quarto-float anchored">
+<div id="tbl-ventas" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ventas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;3.3: Estadística descriptiva de las ventas por Equipo
 </figcaption>
 <div aria-describedby="tbl-ventas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Equipo</th>
@@ -950,7 +958,7 @@ Tabla&nbsp;3.3: Estadística descriptiva de las ventas por Equipo
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-puntosventas" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-puntosventas" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-puntosventas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-puntosventas-1.png" class="img-fluid figure-img" style="width:60.0%" data-fig-pos="H">
@@ -964,7 +972,7 @@ Figura&nbsp;3.15: Gráfica de puntos de las ventas por equipo
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-histventas" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-histventas" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-histventas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-histventas-1.png" class="img-fluid figure-img" style="width:70.0%" data-fig-pos="H">
@@ -978,7 +986,7 @@ Figura&nbsp;3.16: Histograma de las ventas por equipo
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-cajaventas" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-cajaventas" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cajaventas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-cajaventas-1.png" class="img-fluid figure-img" style="width:70.0%" data-fig-pos="H">
@@ -1025,6 +1033,44 @@ s^2 = \dfrac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}
 s = \sqrt{s^2} = \sqrt{\dfrac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}
 \tag{3.13}\]</span></span></p>
 </div>
+<p>Finalmente, en la <a href="#tbl-dispventas" class="quarto-xref">Tabla&nbsp;<span>3.4</span></a> podemos apreciar que el equipo 1 tiene un rango menor que el equipo 2, lo mismo ocurre con las otras dos medidas de dispersión. El hecho de que las medidas de dispersión del equipo 1 sean menores a las del equipo 2 nos da a entender que aunque ambos equipos tienen el mismo promedio de ventas, en el equipo 1 las ventas son más homogéneas.</p>
+<div class="cell">
+<div id="tbl-dispventas" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dispventas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;3.4: Medidas de Dispersión de las ventas por Equipo
+</figcaption>
+<div aria-describedby="tbl-dispventas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Equipo</th>
+<th style="text-align: right;">Rango</th>
+<th style="text-align: left;">Varianza</th>
+<th style="text-align: right;">Desviación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Team1</td>
+<td style="text-align: right;">3445.70</td>
+<td style="text-align: left;">1000000.00</td>
+<td style="text-align: right;">1000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Team2</td>
+<td style="text-align: right;">5970.71</td>
+<td style="text-align: left;">2250000.00</td>
+<td style="text-align: right;">1500</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 </section>
 <section id="medidas-de-posición" class="level3" data-number="3.2.5">
@@ -1039,7 +1085,7 @@ s = \sqrt{s^2} = \sqrt{\dfrac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}
 <li><em>Deciles</em>: son 9 valores (<span class="math inline">\(D_1, D_2, D_3, D_4, D_5, D_6, D_7, D_8, D_9\)</span>) que dividen a la distribución en 10 partes iguales.</li>
 <li><em>Percentiles</em>, son 99 valores (<span class="math inline">\(P_1, P_2, \ldots P_{99}\)</span>) que dividen a la distribución en 100 partes iguales.</li>
 </ul>
-<div id="fig-cuantiles" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-cuantiles" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cuantiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/cuantiles.png" class="img-fluid figure-img">
@@ -1071,6 +1117,7 @@ Figura&nbsp;3.18: Cuantiles
 <p><span id="eq-valperc"><span class="math display">\[
   X_{i.a}=X_{i}+0.a(X_{i+1}-X_{i})
 \tag{3.15}\]</span></span></p>
+<p>Estas expresiones matemáticas no serán usadas para el cálculo de percentiles en este texto. Más adelante aprenderemos una función en R que nos permite calcular cualquier percentil.</p>
 </section>
 <section id="relación-entre-los-cuartiles-y-el-diagrama-de-caja." class="level4" data-number="3.2.5.3">
 <h4 data-number="3.2.5.3" class="anchored" data-anchor-id="relación-entre-los-cuartiles-y-el-diagrama-de-caja."><span class="header-section-number">3.2.5.3</span> Relación entre los cuartiles y el diagrama de caja.</h4>
@@ -1085,7 +1132,7 @@ LS = Q_3 + 1.5IQR
 <p><span id="eq-lidc"><span class="math display">\[
 LI = Q_1 - 1.5IQR
 \tag{3.18}\]</span></span></p>
-<div id="fig-boxparts" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-boxparts" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-boxparts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/boxplot3.png" class="img-fluid figure-img" style="width:50.0%">
@@ -1117,8 +1164,8 @@ Tip
 </ul>
 </div>
 </div>
-<section id="creación-de-proyectos-en-rstudio" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="creación-de-proyectos-en-rstudio"><span class="header-section-number">3.3.1</span> Creación de proyectos en RStudio</h3>
+<section id="sec-projectR" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="sec-projectR"><span class="header-section-number">3.3.1</span> Creación de proyectos en RStudio</h3>
 <p>RStudio tiene una forma más eficiente de manejar los directorios de trabajo, utilizando <strong>proyectos</strong>. Un proyecto es simplemente un directorio de trabajo designado con un archivo de extensión <code>.Rproj</code>. Al momento de abrir un proyecto, se configura automáticamente el directorio de trabajo como el directorio donde se encuentra el archivo <code>.Rproj</code>.</p>
 <p>Una buena práctica es crear un proyecto en RStudio por cada investigación, tarea o proyecto de análisis que se desee trabajar. Dentro de la carpeta del proyecto es recomendable tener subcarpetas que permitan almacenar los datos que van a ser leídos y producidos como parte de nuestro análisis. Una sugerencia es tener cuatro carpetas como mínimo:</p>
 <ol type="1">
@@ -1128,7 +1175,7 @@ Tip
 <li><code>scripts</code>: en esta carpeta se guardan todos los scripts utilizados en el análisis.</li>
 </ol>
 <p>En este texto se utilizará un solo proyecto al que llamaremos <strong>r4agro</strong>. En cualquier ubicación de nuestra computadora vamos a crear la carpeta llamada <strong>r4agro</strong> y dentro de esta carpeta las carpetas <strong>datos</strong>, <strong>graficos</strong>, <strong>resultados</strong> y <strong>scripts</strong> como se muestra en la <a href="#fig-project1" class="quarto-xref">Figura&nbsp;<span>3.20</span></a>.</p>
-<div id="fig-project1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-project1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-project1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/rproject1.png" class="img-fluid figure-img" style="width:50.0%">
@@ -1139,7 +1186,7 @@ Figura&nbsp;3.20: Carpeta del proyecto r4agro
 </figure>
 </div>
 <p>Para crear un proyecto, se debe dar clic en <code>File -&gt; New Project</code> y aparecerá la ventana mostrada en la <a href="#fig-project2" class="quarto-xref">Figura&nbsp;<span>3.21</span></a>.</p>
-<div id="fig-project2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-project2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-project2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/newproject.png" class="img-fluid figure-img" style="width:50.0%">
@@ -1150,10 +1197,20 @@ Figura&nbsp;3.21: Crear un nuevo proyecto
 </figure>
 </div>
 <p>Escogemos la opción de acuerdo a nuestras necesidades:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li><strong>New Directory</strong>: escogemos esta opción si vamos a crear un nuevo directorio desde 0. Cuando se da clic, aparece una nueva ventana como se muestra en la <a href="#fig-project3" class="quarto-xref">Figura&nbsp;<span>3.22</span></a></li>
 </ul>
-<div id="fig-project3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-project3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-project3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/rpoject2_np.png" class="img-fluid figure-img" style="width:50.0%">
@@ -1167,13 +1224,17 @@ Figura&nbsp;3.22: Opción New Directory
 <li><p><strong>Existing Directory</strong>: escogemos esta opción si ya tenemos creada la carpeta de nuestro proyecto. En este libro vamos a trabajar siempre escogiendo esta opción. Más adelante explicaremos en detalle como crear un proyecto escogiendo esta opción.</p></li>
 <li><p><strong>Version Control</strong>: El control de versiones ayuda a los equipos de desarrollo de software a controlar y gestionar los cambios en el código fuente a lo largo del tiempo. Los programas y plataformas de control de versiones mantienen un registro de las modificaciones hechas al código. Si se comete un error, los desarrolladores pueden comparar versiones anteriores del código para ayudar a corregir el error al tiempo que se minimizan las molestias para todos los miembros del equipo. RStudio trabaja con dos sistemas de código abierto para el control de versiones: <strong>Git</strong> y <strong>Subversion</strong>.</p></li>
 </ul>
+</div>
+</div>
+<section id="creación-de-proyectos-existing-directory" class="level4" data-number="3.3.1.1">
+<h4 data-number="3.3.1.1" class="anchored" data-anchor-id="creación-de-proyectos-existing-directory"><span class="header-section-number">3.3.1.1</span> Creación de proyectos (Existing Directory)</h4>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Creación de proyectos (Existing Directory)
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1187,7 +1248,7 @@ Creación de proyectos (Existing Directory)
 </ul>
 </div>
 </div>
-<div id="fig-project4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-project4" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-project4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/rproject_ed.png" class="img-fluid figure-img" style="width:50.0%">
@@ -1197,7 +1258,7 @@ Figura&nbsp;3.23: Existing Directory
 </figcaption>
 </figure>
 </div>
-<div id="fig-project5" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-project5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-project5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/rproject_ed2.png" class="img-fluid figure-img" style="width:50.0%">
@@ -1207,7 +1268,7 @@ Figura&nbsp;3.24: Escoger carpeta
 </figcaption>
 </figure>
 </div>
-<div id="fig-project6" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-project6" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-project6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/rproject_ed3.png" class="img-fluid figure-img" style="width:50.0%">
@@ -1217,7 +1278,7 @@ Figura&nbsp;3.25: Crear proyecto
 </figcaption>
 </figure>
 </div>
-<div id="fig-project7" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-project7" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-project7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/rproject_ed4.png" class="img-fluid figure-img" style="width:50.0%">
@@ -1228,10 +1289,12 @@ Figura&nbsp;3.26: Proyecto creado
 </figure>
 </div>
 </section>
-<section id="creando-visualizaciones-con-ggplot2." class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="creando-visualizaciones-con-ggplot2."><span class="header-section-number">3.3.2</span> Creando visualizaciones con <code>ggplot2</code>.</h3>
-<section id="los-datos" class="level4" data-number="3.3.2.1">
-<h4 data-number="3.3.2.1" class="anchored" data-anchor-id="los-datos"><span class="header-section-number">3.3.2.1</span> Los datos</h4>
+</section>
+</section>
+<section id="creando-visualizaciones-con-ggplot2." class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="creando-visualizaciones-con-ggplot2."><span class="header-section-number">3.4</span> Creando visualizaciones con <code>ggplot2</code>.</h2>
+<section id="los-datos" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="los-datos"><span class="header-section-number">3.4.1</span> Los datos</h3>
 <p>En esta sección trabajaremos con el conjunto de datos <code>alt_almacigo.csv</code>, este conjunto de datos corresponde a las alturas de 105 plantas de tomate de 5 variedades, 20 días después de la siembra en los almácigos. Las variables presentes en el archivo son:</p>
 <ol type="1">
 <li><strong>Planta</strong>: número de planta estudiada.</li>
@@ -1240,10 +1303,10 @@ Figura&nbsp;3.26: Proyecto creado
 <li><strong>Altura</strong>: altura de la planta en centímetros.</li>
 <li><strong>NHV</strong>: Número de hojas verdaderas.</li>
 </ol>
-<p>En la <a href="#sec-bars1" class="quarto-xref"><span>Sección 3.3.2.3</span></a>, explicaremos paso a paso como obtener el gráfico mostrado en la figura <a href="#fig-bars1" class="quarto-xref">Figura&nbsp;<span>3.27</span></a>:</p>
+<p>En la <a href="#sec-bars1" class="quarto-xref"><span>Sección 3.4.3</span></a>, explicaremos paso a paso como obtener el gráfico mostrado en la figura <a href="#fig-bars1" class="quarto-xref">Figura&nbsp;<span>3.27</span></a>:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bars1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H">
+<div id="fig-bars1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bars1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-estdesc_files/figure-html/fig-bars1-1.png" class="img-fluid figure-img" style="width:60.0%" data-fig-pos="H">
@@ -1256,8 +1319,8 @@ Figura&nbsp;3.27: Diagrama de barras de las variedades de tomate
 </div>
 </div>
 </section>
-<section id="cargar-paquetes-y-leer-datos" class="level4" data-number="3.3.2.2">
-<h4 data-number="3.3.2.2" class="anchored" data-anchor-id="cargar-paquetes-y-leer-datos"><span class="header-section-number">3.3.2.2</span> Cargar paquetes y leer datos</h4>
+<section id="cargar-paquetes-y-leer-datos" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="cargar-paquetes-y-leer-datos"><span class="header-section-number">3.4.2</span> Cargar paquetes y leer datos</h3>
 <p>El primer paso es guardar nuestros datos en la carpeta <code>datos</code> de nuestro proyecto, creado anteriormente, <code>r4agro</code>. Posteriormente creamos un script, en esta oportunidad guardaremos nuestro script en la carpeta <code>scripts</code> con el nombre <code>01_visualizacion.R</code>.</p>
 <p>Existen muchas formas de trabajar en un script, sin embargo, se recomienda seguir el siguiente flujo:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1314,7 +1377,7 @@ Entendiendo el código
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="fig-codigo1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-codigo1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-codigo1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/codigo1.png" class="img-fluid figure-img" style="width:90.0%">
@@ -1381,8 +1444,8 @@ Tip
 </div>
 <p>El tipo de datos para la variable <strong>Variedad</strong> que ha sido reconocido quizás no es el adecuado para análisis posteriores, puesto que la variable es una variable categórica y se recomienda cambiar el tipo de datos a <strong>factor</strong>. Más adelante realizaremos esta modificación.</p>
 </section>
-<section id="sec-bars1" class="level4" data-number="3.3.2.3">
-<h4 data-number="3.3.2.3" class="anchored" data-anchor-id="sec-bars1"><span class="header-section-number">3.3.2.3</span> La gramática del paquete <code>ggplot2</code> para la construcción de gráficos</h4>
+<section id="sec-bars1" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="sec-bars1"><span class="header-section-number">3.4.3</span> La gramática del paquete <code>ggplot2</code> para la construcción de gráficos</h3>
 <p>En R encontramos muchos sistemas para hacer gráficos, sin embargo el paquete <code>ggplot2</code> implementa la <strong>gramática de gráficos</strong> que es un sistema coherente para construir gráficos.</p>
 <p>De manera general la grámatica para construir un gráfico es:</p>
 <div class="cell">
@@ -1395,7 +1458,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1406,7 +1469,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1418,7 +1481,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1431,7 +1494,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1479,7 +1542,7 @@ Importante
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1491,39 +1554,72 @@ Importante
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="histogramas-y-facetas" class="level4" data-number="3.3.2.4">
-<h4 data-number="3.3.2.4" class="anchored" data-anchor-id="histogramas-y-facetas"><span class="header-section-number">3.3.2.4</span> Histogramas y facetas</h4>
+<section id="diagrama-de-cajas" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="diagrama-de-cajas"><span class="header-section-number">3.4.4</span> Diagrama de cajas</h3>
+<p>En la <a href="#sec-cajas" class="quarto-xref"><span>Sección 3.1.3.6</span></a>, explicamos qué es un diagrama de cajas. A continuación vamos a elaborar un diagrama de cajas para la altura por variedad. El objeto geométrico para elaborar un diagrama de cajas es <code>geom_boxplot</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Variedad, <span class="at">y =</span> Altura, <span class="at">fill =</span> Variedad )) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Altura (cm)"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>El gráfico presentado tiene dos aspectos que van a ser modificados, primero la leyenda es redundante porque es evidente qué caja representa a cada variedad. Segundo el fondo del gráfico debe ser blanco. Para lograr esto último usamos la opción <code>theme_classic()</code> y para eliminar la leyenda usamos la opción <code>theme( legend.position = "none" )</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Variedad, <span class="at">y =</span> Altura, <span class="at">fill =</span> Variedad )) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Altura (cm)"</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histogramas-y-facetas" class="level3" data-number="3.4.5">
+<h3 data-number="3.4.5" class="anchored" data-anchor-id="histogramas-y-facetas"><span class="header-section-number">3.4.5</span> Histogramas y facetas</h3>
 <p>La variable <strong>Altura</strong> es una variable cuantitativa continua por lo que para representarla es conveniente utilizar un histograma. El objeto geométrico que nos permite obtener un histograma es <code>geom_histogram()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Al ejecutar el código, además del gráfico, en la consola obtenemos un mensaje que nos sugiere que se están usando 30 barras y nos recomienda trabajar con un argumento para cambiar el resultado. La función <code>geom_histogram()</code> por defecto trabaja con este valor de barras, otra opción adicional a la sugerencia dada por el programa es dentro del objeto indicar cuántas barras se desea incluir con la opción <code>bins =</code>. Además para notar las barras vamos a usar las opciones <code>fill</code> y <code>col</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">7</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">col =</span> <span class="st">"black"</span> ) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">7</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">col =</span> <span class="st">"black"</span> ) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1548,14 +1644,14 @@ Tip
 </div>
 <p>El primer argumento de la función es una fórmula que consiste basicamente del símbolo <code>~</code> seguido por el nombre de la variable categórica.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">7</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">col =</span> <span class="st">"black"</span> ) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>) <span class="sc">+</span> </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Variedad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">7</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">col =</span> <span class="st">"black"</span> ) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>) <span class="sc">+</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Variedad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1580,30 +1676,30 @@ Cómo guardar un gráfico desde R con <code>ggplot2</code>
 </div>
 <p>Supongamos que deseamos guardar el último gráfico creado con el nombre <code>hist_alt_fac.png</code> en la carpeta gráficos. Primero guardaremos el gráfico en una variable llamada <code>g1</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">7</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">col =</span> <span class="st">"black"</span> ) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>) <span class="sc">+</span> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Variedad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Altura )) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">7</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">col =</span> <span class="st">"black"</span> ) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frecuencia"</span>) <span class="sc">+</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Variedad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Posteriormente, usamos la función <code>ggsave()</code> para guardar el gráfico.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"graficos/hist_alt_fac.png"</span>, g1, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"graficos/hist_alt_fac.png"</span>, g1, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="cálculo-de-medidas-numéricas-de-resumen." class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="cálculo-de-medidas-numéricas-de-resumen."><span class="header-section-number">3.3.3</span> Cálculo de medidas numéricas de resumen.</h3>
-<section id="sec-res1" class="level4" data-number="3.3.3.1">
-<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="sec-res1"><span class="header-section-number">3.3.3.1</span> Ingresando los datos (pequeños conjuntos de datos).</h4>
+<section id="cálculo-de-medidas-numéricas-de-resumen." class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="cálculo-de-medidas-numéricas-de-resumen."><span class="header-section-number">3.5</span> Cálculo de medidas numéricas de resumen.</h2>
+<section id="sec-res1" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="sec-res1"><span class="header-section-number">3.5.1</span> Ingresando los datos (pequeños conjuntos de datos).</h3>
 <p>En esta sección vamos a presentar cómo calcular medidas númericas de resumen ingresando los datos directamente en la consola, es decir que crearemos una variable que contenga los datos.</p>
-<p>El ingeniero Yorky Gil, con la finalidad de elaborar la curva fenológica para el cultivo de girasol en condiciones del trópico húmedo, realizó una siembra de girasoles. Periódicamente realizó mediciones del número de hojas y la altura de las plantas. De los datos obtenidos por Yorky de la semana 8 se extrajo una muestra de las alturas de 20 observaciones las cuales se muestran en la <a href="#tbl-altgir" class="quarto-xref">Tabla&nbsp;<span>3.4</span></a>. Con estos datos calcular la media, la mediana, la desviación estándar, el rango. Adicionalmente calcular los 3 cuartiles, y los 9 deciles.</p>
-<div id="tbl-altgir" class="quarto-float anchored">
+<p>El ingeniero Yorky Gil, con la finalidad de elaborar la curva fenológica para el cultivo de girasol en condiciones del trópico húmedo, realizó una siembra de girasoles. Periódicamente realizó mediciones del número de hojas y la altura de las plantas. De los datos obtenidos por Yorky de la semana 8 se extrajo una muestra de las alturas de 20 observaciones las cuales se muestran en la <a href="#tbl-altgir" class="quarto-xref">Tabla&nbsp;<span>3.5</span></a>. Con estos datos calcular la media, la mediana, la desviación estándar, el rango. Adicionalmente calcular los 3 cuartiles, y los 9 deciles.</p>
+<div id="tbl-altgir" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-altgir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabla&nbsp;3.4: Altura de girasoles en centímetros. Semana 8
+Tabla&nbsp;3.5: Altura de girasoles en centímetros. Semana 8
 </figcaption>
 <div aria-describedby="tbl-altgir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">140</td>
@@ -1640,34 +1736,34 @@ Tabla&nbsp;3.4: Altura de girasoles en centímetros. Semana 8
 </div>
 <p>Este ejercicio lo resolveremos en un script llamado <code>02_numrespeq.R</code>, no es necesario cargar paquetes por lo que el primer paso para resolver este ejercicio es ingresar los datos en R. En este caso es unicámente un vector con 20 datos, vamos a llamar <strong>alt_gir</strong> a la variable.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>alt_gir <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">140</span>, <span class="dv">123</span>, <span class="dv">110</span>, <span class="dv">100</span>, <span class="dv">137</span>, <span class="dv">117</span>, <span class="dv">120</span>, <span class="dv">112</span>, <span class="dv">168</span>, <span class="dv">109</span>, </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">165</span>, <span class="dv">133</span>, <span class="dv">178</span>, <span class="dv">81</span>, <span class="dv">135</span>, <span class="dv">145</span>, <span class="dv">109</span>, <span class="dv">78</span>, <span class="dv">169</span>, <span class="dv">132</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>alt_gir <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">140</span>, <span class="dv">123</span>, <span class="dv">110</span>, <span class="dv">100</span>, <span class="dv">137</span>, <span class="dv">117</span>, <span class="dv">120</span>, <span class="dv">112</span>, <span class="dv">168</span>, <span class="dv">109</span>, </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">165</span>, <span class="dv">133</span>, <span class="dv">178</span>, <span class="dv">81</span>, <span class="dv">135</span>, <span class="dv">145</span>, <span class="dv">109</span>, <span class="dv">78</span>, <span class="dv">169</span>, <span class="dv">132</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Una vez ingresados los datos, podemos calcular la media con la función <code>mean()</code>, la mediana con la función <code>median()</code> y la desviación estándar con la función <code>sd()</code>. Estas tres funciones reciben el vector del que se quiere calcular el valor. Además en el caso de tener valores perdidos se puede indicar que se los remueva con la opción <code>na.rm = TRUE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 128.05</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 127.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 27.8709</code></pre>
 </div>
 </div>
 <p>En el paquete <code>base</code> de R no existe una función que nos permita calcular el rango directamente, sin embargo podemos usar la definición dada en la <a href="#sec-disp" class="quarto-xref"><span>Sección 3.2.4</span></a> y utilizar las funciones <code>max()</code> y <code>min()</code> para calcular el rango como la diferencia entre el máximo y el mínimo del conjunto.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(alt_gir) <span class="sc">-</span> <span class="fu">min</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(alt_gir) <span class="sc">-</span> <span class="fu">min</span>(alt_gir)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 100</code></pre>
 </div>
 </div>
 <p>Finalmente para calcular los percentiles utilizamos la función <code>quantile()</code>, los argumentos que recibe esta función son los datos y el percentil o percentiles que se desean calcular escritos en números decimales . Recordemos que los tres cuartiles acumulan el 25%, el 50% y el 75% respectivamente. Si solo quisieramos calcular el primer cuartil, lo podemos obtener escribiendo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fl">0.25</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fl">0.25</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   25% 
 109.75 </code></pre>
@@ -1675,7 +1771,7 @@ Tabla&nbsp;3.4: Altura de girasoles en centímetros. Semana 8
 </div>
 <p>Para calcular los tres cuartiles de una sola vez, se puede escribir una lista de los cuartiles.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   25%    50%    75% 
 109.75 127.50 141.25 </code></pre>
@@ -1683,7 +1779,7 @@ Tabla&nbsp;3.4: Altura de girasoles en centímetros. Semana 8
 </div>
 <p>En el caso de los deciles podemos escribir como antes o utilizar la función <code>seq()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.20</span>, <span class="fl">0.30</span>, <span class="fl">0.40</span>, <span class="fl">0.50</span>, <span class="fl">0.60</span>, <span class="fl">0.70</span>, <span class="fl">0.80</span>, <span class="fl">0.90</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.20</span>, <span class="fl">0.30</span>, <span class="fl">0.40</span>, <span class="fl">0.50</span>, <span class="fl">0.60</span>, <span class="fl">0.70</span>, <span class="fl">0.80</span>, <span class="fl">0.90</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  10%   20%   30%   40%   50%   60%   70%   80%   90% 
  98.1 109.0 111.4 118.8 127.5 133.8 137.9 149.0 168.1 </code></pre>
@@ -1703,16 +1799,16 @@ Tip
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">0.10</span>, <span class="at">to =</span> <span class="fl">0.90</span>,  <span class="at">by =</span> <span class="fl">0.10</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(alt_gir, <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">0.10</span>, <span class="at">to =</span> <span class="fl">0.90</span>,  <span class="at">by =</span> <span class="fl">0.10</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  10%   20%   30%   40%   50%   60%   70%   80%   90% 
  98.1 109.0 111.4 118.8 127.5 133.8 137.9 149.0 168.1 </code></pre>
 </div>
 </div>
 </section>
-<section id="sec-res2" class="level4" data-number="3.3.3.2">
-<h4 data-number="3.3.3.2" class="anchored" data-anchor-id="sec-res2"><span class="header-section-number">3.3.3.2</span> Leyendo los datos desde un archivo en Excel, usando el pipe (<code>|&gt;</code>) (grandes conjuntos de datos).</h4>
-<p>En la <a href="#sec-bars1" class="quarto-xref"><span>Sección 3.3.2.3</span></a>, aprendimos a leer datos que se encuentran en un archivo <code>.csv</code>. Ahora trabajaremos con datos que se encuentran disponibles en un libro de Excel. El archivo se llama <code>alt_transp.xlsx</code> y la información está en la hoja de cálculo llamada <code>transplante</code>. Contiene la información de mediciones de altura hechas a plantas de tomate de cinco variedades. Las variables presentes son:</p>
+<section id="sec-res2" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="sec-res2"><span class="header-section-number">3.5.2</span> Leyendo los datos desde un archivo en Excel, usando el pipe (<code>|&gt;</code>) (grandes conjuntos de datos).</h3>
+<p>En la <a href="#sec-bars1" class="quarto-xref"><span>Sección 3.4.3</span></a>, aprendimos a leer datos que se encuentran en un archivo <code>.csv</code>. Ahora trabajaremos con datos que se encuentran disponibles en un libro de Excel. El archivo se llama <code>alt_transp.xlsx</code> y la información está en la hoja de cálculo llamada <code>transplante</code>. Contiene la información de mediciones de altura hechas a plantas de tomate de cinco variedades. Las variables presentes son:</p>
 <ol type="1">
 <li><strong>Planta</strong>: número de planta.</li>
 <li><strong>Fecha_med</strong>: fecha de la medición.</li>
@@ -1722,15 +1818,15 @@ Tip
 </ol>
 <p>Existen algunos paquetes para leer información desde archivos Excel, sin embargo vamos a utilizar el paquete <code>readxl</code>. Adicionalmente usaremos el paquete <code>writexl</code> que nos permitirá guardar más adelante nuestros resultados en un archivo de Excel. Vamos a crear un script llamado <code>03_numresgra.R</code>. Recordemos que primero cargamos los paquetes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ahora leamos los datos con la función <code>read_excel()</code> del paquete <code>readxl()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>transplante <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"datos/alt_transp.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"transplante"</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(transplante)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>transplante <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"datos/alt_transp.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"transplante"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(transplante)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 700
 Columns: 5
@@ -1751,7 +1847,7 @@ Entendiendo el código
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="fig-codigo2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-codigo2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-codigo2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/codigo2.png" class="img-fluid figure-img" style="width:90.0%">
@@ -1783,12 +1879,12 @@ Importante
 </div>
 <p>Si calculáramos a mano la media y la desviación estándar de la altura por variedad y fecha de medición, primero agruparíamos los datos por variedad y fecha y luego calcularíamos para cada grupo estas medidas numéricas. Para resolver esto con las funciones de <code>dplyr()</code> usamos el siguiente código:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>transplante <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Variedad, Fecha_med) <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media =</span> <span class="fu">mean</span>(Altura),</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desv =</span> <span class="fu">sd</span>(Altura)</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>transplante <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Variedad, Fecha_med) <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media =</span> <span class="fu">mean</span>(Altura),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desv =</span> <span class="fu">sd</span>(Altura)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'Variedad'. You can override using the
 `.groups` argument.</code></pre>
@@ -1821,7 +1917,7 @@ Entendiendo el código
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="fig-codigo3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-codigo3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-codigo3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/codigo3.png" class="img-fluid figure-img" style="width:90.0%">
@@ -1835,12 +1931,12 @@ Figura&nbsp;3.30: Resumiendo datos con funciones <code>dplyr</code>
 </div>
 <p>De la tabla generada, unicámente se muestran 10 columnas en la consola. Para poder ver toda la tabla se debe guardar toda la tabla en una variable, en este caso la almacenaremos en una variable llamada <code>tbl_alt_var_fec</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tbl_alt_var_fec <span class="ot">&lt;-</span> transplante <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Variedad, Fecha_med) <span class="sc">|&gt;</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media =</span> <span class="fu">mean</span>(Altura),</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desv =</span> <span class="fu">sd</span>(Altura)</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tbl_alt_var_fec <span class="ot">&lt;-</span> transplante <span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Variedad, Fecha_med) <span class="sc">|&gt;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media =</span> <span class="fu">mean</span>(Altura),</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desv =</span> <span class="fu">sd</span>(Altura)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'Variedad'. You can override using the
 `.groups` argument.</code></pre>
@@ -1852,7 +1948,7 @@ Figura&nbsp;3.30: Resumiendo datos con funciones <code>dplyr</code>
 <li>Ejecutar el código <code>View(tbl_alt_var_fec)</code></li>
 </ol>
 <p>Cualquiera de las dos opciones nos permitirá ver nuestra tabla, en una pestaña que se abre junto al script que estamos trabajando.</p>
-<div id="fig-tabla" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tabla" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tabla-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="imagenes/tbl_alt_var_fec.png" class="img-fluid figure-img">
@@ -1864,10 +1960,10 @@ Figura&nbsp;3.31: Viendo una tabla
 </div>
 <p>Antes de aprender a guardar la tabla, vamos a crear una variable nueva en el conjunto de datos <code>transplante</code>. La variable que crearemos se llama <code>DDT</code> (días después de transplante). Esta variable resulta de la diferencia entre la fecha de medición y la fecha de transplante. Para crear nuevas variables en el conjunto de datos podemos usar la función <code>mutate()</code> de <code>dplyr</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>transplante <span class="ot">&lt;-</span> transplante <span class="sc">|&gt;</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">DDT =</span> <span class="fu">as.numeric</span>(Fecha_med <span class="sc">-</span> Fecha_trans)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>transplante <span class="ot">&lt;-</span> transplante <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">DDT =</span> <span class="fu">as.numeric</span>(Fecha_med <span class="sc">-</span> Fecha_trans)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1885,28 +1981,28 @@ Importante
 </ol>
 </div>
 </div>
-<p>Volvemos a calcular la media y la desviación, pero esta vez agrupamos por variedad y por día después de transplante (DDT). Esta vez el resultado será almacenado en la variable <code>tbl_alt_var_ddt</code>. En la <a href="#tbl-altvarddt" class="quarto-xref">Tabla&nbsp;<span>3.5</span></a> se muestra el resultado final.</p>
+<p>Volvemos a calcular la media y la desviación, pero esta vez agrupamos por variedad y por día después de transplante (DDT). Esta vez el resultado será almacenado en la variable <code>tbl_alt_var_ddt</code>. En la <a href="#tbl-altvarddt" class="quarto-xref">Tabla&nbsp;<span>3.6</span></a> se muestra el resultado final.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>tbl_alt_var_ddt <span class="ot">&lt;-</span> transplante <span class="sc">|&gt;</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Variedad, DDT) <span class="sc">|&gt;</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media =</span> <span class="fu">mean</span>(Altura),</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desv =</span> <span class="fu">sd</span>(Altura)</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>tbl_alt_var_ddt <span class="ot">&lt;-</span> transplante <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Variedad, DDT) <span class="sc">|&gt;</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media =</span> <span class="fu">mean</span>(Altura),</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desv =</span> <span class="fu">sd</span>(Altura)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'Variedad'. You can override using the
 `.groups` argument.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div id="tbl-altvarddt" class="cell quarto-float anchored">
+<div id="tbl-altvarddt" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-altvarddt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabla&nbsp;3.5: Medidas numéricas de resumen por Variedad y Día después de transplante
+Tabla&nbsp;3.6: Medidas numéricas de resumen por Variedad y Día después de transplante
 </figcaption>
 <div aria-describedby="tbl-altvarddt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Variedad</th>
@@ -2135,26 +2231,27 @@ Tabla&nbsp;3.5: Medidas numéricas de resumen por Variedad y Día después de tr
 </div>
 <p>Para guardar la tabla podemos usar la función <code>write_xlsx</code>. El uso básico de la función es <code>write_xlsx(x = objeto, ruta_nombre_archivo)</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(<span class="at">x =</span> tbl_alt_var_ddt, <span class="st">"resultados/tabla1.xlsx"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(<span class="at">x =</span> tbl_alt_var_ddt, <span class="st">"resultados/tabla1.xlsx"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="bono-haciendo-un-gráfico-de-líneas" class="level4" data-number="3.3.3.3">
-<h4 data-number="3.3.3.3" class="anchored" data-anchor-id="bono-haciendo-un-gráfico-de-líneas"><span class="header-section-number">3.3.3.3</span> Bono: Haciendo un gráfico de líneas</h4>
-<p>En la <a href="#sec-gralin" class="quarto-xref"><span>Sección 3.1.3.7</span></a> se presentaron los gráficos de líneas. Para construir un gráfico de líneas debemos tener los datos resumidos como en la <a href="#tbl-altvarddt" class="quarto-xref">Tabla&nbsp;<span>3.5</span></a>.</p>
+</section>
+<section id="bono-haciendo-un-gráfico-de-líneas" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="bono-haciendo-un-gráfico-de-líneas"><span class="header-section-number">3.6</span> Bono: Haciendo un gráfico de líneas</h2>
+<p>En la <a href="#sec-gralin" class="quarto-xref"><span>Sección 3.1.3.7</span></a> se presentaron los gráficos de líneas. Para construir un gráfico de líneas debemos tener los datos resumidos como en la <a href="#tbl-altvarddt" class="quarto-xref">Tabla&nbsp;<span>3.6</span></a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tbl_alt_var_ddt, <span class="fu">aes</span>(<span class="at">x =</span> DDT, <span class="at">y =</span> Media)) <span class="sc">+</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Días después de transplante"</span>,</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Altura (cm)"</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tbl_alt_var_ddt, <span class="fu">aes</span>(<span class="at">x =</span> DDT, <span class="at">y =</span> Media)) <span class="sc">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Días después de transplante"</span>,</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Altura (cm)"</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2164,20 +2261,20 @@ Tabla&nbsp;3.5: Medidas numéricas de resumen por Variedad y Día después de tr
 <li><strong>Escribiendo cada uno de los valores</strong>: escribimos una lista con todos los valores que deseamos aparezcan, en este caso las mediciones fueron hechas los dias 6, 13, 20, 27, 34, 41 y 60.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tbl_alt_var_ddt, <span class="fu">aes</span>(<span class="at">x =</span> DDT, <span class="at">y =</span> Media)) <span class="sc">+</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Días después de transplante"</span>,</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Altura (cm)"</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">13</span>,<span class="dv">20</span>,<span class="dv">27</span>,<span class="dv">34</span>,<span class="dv">41</span>,<span class="dv">60</span>))</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tbl_alt_var_ddt, <span class="fu">aes</span>(<span class="at">x =</span> DDT, <span class="at">y =</span> Media)) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Días después de transplante"</span>,</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Altura (cm)"</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">13</span>,<span class="dv">20</span>,<span class="dv">27</span>,<span class="dv">34</span>,<span class="dv">41</span>,<span class="dv">60</span>))</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2186,41 +2283,39 @@ Tabla&nbsp;3.5: Medidas numéricas de resumen por Variedad y Día después de tr
 <li><strong>Almacenando los valores en una variable</strong>: con la función <code>unique</code>, obtenemos los valores únicos de la variable <code>DDT</code> de la tabla usada. Posteriormente en la opción <code>breaks</code> indicamos que en esta variable se encuentran los valores.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>ddts <span class="ot">&lt;-</span> <span class="fu">unique</span>(tbl_alt_var_ddt<span class="sc">$</span>DDT)</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tbl_alt_var_ddt, <span class="fu">aes</span>(<span class="at">x =</span> DDT, <span class="at">y =</span> Media)) <span class="sc">+</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Días después de transplante"</span>,</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Altura (cm)"</span></span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> ddts)</span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>ddts <span class="ot">&lt;-</span> <span class="fu">unique</span>(tbl_alt_var_ddt<span class="sc">$</span>DDT)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tbl_alt_var_ddt, <span class="fu">aes</span>(<span class="at">x =</span> DDT, <span class="at">y =</span> Media)) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">col =</span> Variedad)) <span class="sc">+</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Días después de transplante"</span>,</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Altura (cm)"</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> ddts)</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-estdesc_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-estdesc_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-</section>
-</section>
 <section id="ejercicios" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="ejercicios">Ejercicios</h2>
 <div id="exr-primero" class="theorem exercise">
-<p><span class="theorem-title"><strong>Ejercicio 3.1</strong></span> En la <a href="#tbl-ejer1_1" class="quarto-xref">Tabla&nbsp;<span>3.6</span></a> se muestran los datos de la altura de 40 girasoles. Se pide:</p>
+<p><span class="theorem-title"><strong>Ejercicio 3.1</strong></span> En la <a href="#tbl-ejer1_1" class="quarto-xref">Tabla&nbsp;<span>3.7</span></a> se muestran los datos de la altura de 40 girasoles. Se pide:</p>
 </div>
-<div id="tbl-ejer1_1" class="quarto-float anchored">
+<div id="tbl-ejer1_1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ejer1_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabla&nbsp;3.6: Altura de girasoles en centímetros. Semana 8
+Tabla&nbsp;3.7: Altura de girasoles en centímetros. Semana 8
 </figcaption>
 <div aria-describedby="tbl-ejer1_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">134</td>
@@ -2283,15 +2378,15 @@ Tabla&nbsp;3.6: Altura de girasoles en centímetros. Semana 8
 <li>Determinar el valor mayor al 37% de los datos.</li>
 </ol>
 <div id="exr-segundo" class="theorem exercise">
-<p><span class="theorem-title"><strong>Ejercicio 3.2</strong></span> En la <a href="#tbl-ejer1_2" class="quarto-xref">Tabla&nbsp;<span>3.7</span></a> se muestran los datos del número de hojas de 40 girasoles. Se pide:</p>
+<p><span class="theorem-title"><strong>Ejercicio 3.2</strong></span> En la <a href="#tbl-ejer1_2" class="quarto-xref">Tabla&nbsp;<span>3.8</span></a> se muestran los datos del número de hojas de 40 girasoles. Se pide:</p>
 </div>
-<div id="tbl-ejer1_2" class="quarto-float anchored">
+<div id="tbl-ejer1_2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ejer1_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabla&nbsp;3.7: Número de Hojas de girasoles. Semana 8
+Tabla&nbsp;3.8: Número de Hojas de girasoles. Semana 8
 </figcaption>
 <div aria-describedby="tbl-ejer1_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">28</td>
@@ -2354,15 +2449,15 @@ Tabla&nbsp;3.7: Número de Hojas de girasoles. Semana 8
 <li>Determine el valor menor al 25% de los datos.</li>
 </ol>
 <div id="exr-terc" class="theorem exercise">
-<p><span class="theorem-title"><strong>Ejercicio 3.3</strong></span> Con los datos de la <a href="#tbl-ejer1_3" class="quarto-xref">Tabla&nbsp;<span>3.8</span></a>, determine:</p>
+<p><span class="theorem-title"><strong>Ejercicio 3.3</strong></span> Con los datos de la <a href="#tbl-ejer1_3" class="quarto-xref">Tabla&nbsp;<span>3.9</span></a>, determine:</p>
 </div>
-<div id="tbl-ejer1_3" class="quarto-float anchored">
+<div id="tbl-ejer1_3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ejer1_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabla&nbsp;3.8: Diámetro de plantas de banano en centímetros.
+Tabla&nbsp;3.9: Diámetro de plantas de banano en centímetros.
 </figcaption>
 <div aria-describedby="tbl-ejer1_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">20</td>
@@ -2404,7 +2499,7 @@ Tabla&nbsp;3.8: Diámetro de plantas de banano en centímetros.
 <li>Los percentiles 33, 47, 65 y 89</li>
 </ol>
 <div id="exr-cuarto" class="theorem exercise">
-<p><span class="theorem-title"><strong>Ejercicio 3.4</strong></span> Para este ejercicio se trabajará con el conjunto de datos <em>girasoles.csv</em>. Se recomienda crear un proyecto llamado <strong>Practica01</strong>. Puede revisar la <span class="quarto-unresolved-ref">?sec-projectR</span> para revisar los pasos para crear un proyecto. Recuerde que el archivo <em>girasoles.csv</em> debe ser guardado en la carpeta <em>datos</em> del proyecto.</p>
+<p><span class="theorem-title"><strong>Ejercicio 3.4</strong></span> Para este ejercicio se trabajará con el conjunto de datos <em>girasoles.csv</em>. Se recomienda crear un proyecto llamado <strong>Practica01</strong>. Puede revisar la <a href="#sec-projectR" class="quarto-xref"><span>Sección 3.3.1</span></a> para revisar los pasos para crear un proyecto. Recuerde que el archivo <em>girasoles.csv</em> debe ser guardado en la carpeta <em>datos</em> del proyecto.</p>
 </div>
 <ol type="a">
 <li>Crear un script y guardarlo en la carpeta correspondiente con el nombre <em>01girasoles.R</em></li>
@@ -2427,8 +2522,156 @@ Tabla&nbsp;3.8: Diámetro de plantas de banano en centímetros.
 <div id="exr-quin" class="theorem exercise">
 <p><span class="theorem-title"><strong>Ejercicio 3.5</strong></span> En el conjunto de datos <em>fenologia_camote.xlsx</em> se presentan datos de un experimento realizado en una plantación de camote en la que se aplicaron 4 tratamientos, dentro de la plantación se escogieron puntos de evaluación y en cada punto se aplicó cada tratamiento a determinado número de tubérculos. Al final a cada tubérculo se le midió el peso en gramos, el grosor en milímetros y la longitud de la guía en centímetros. Utilizando Rstudio realice el análisis estadístico descriptivo de los datos, con medidas de resumen, gráficos y tablas adecuados. <strong>Sugerencias:</strong> puede resolver este ejercicio en el mismo proyecto creado en el <a href="#exr-cuarto" class="quarto-xref">Ejercicio&nbsp;<span>3.4</span></a>, además es conveniente crear un nuevo script.</p>
 </div>
+<div id="exr-quin2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Ejercicio 3.6</strong></span> El cacao <em>(Theobroma cacao L.)</em> es una fruta de origen tropical utilizada como materia prima en la industria del chocolate. El proyecto desarrolado por Paula Reyes y Osvin Aldana tuvo como objetivo caracterizar fenotípica y genotípicamente 19 accesiones de cacao <em>(Theobroma cacao L.)</em>, ubicadas en el Banco de Germoplasma de la Universidad EARTH, además evaluar la susceptibilidad, tolerancia o resistencia a las enfermedades moniliasis <em>(Moniliophthora roreri Cif y Par)</em> y mazorca negra <em>(Phytophthora palmivora Bult)</em>, y comprobar la efectividad del protocolo de extracción de ADN genómico utilizando buffer CTAB en muestras foliares de cacao. Los resultados de la caracterización fenotípica dieron a conocer una alta variabilidad entre las accesiones formando agrupaciones en cada descriptor evaluado. En el archivo <em>baseEX2G1.xlsx</em> se almacenan los datos de 4 de las 19 accesiones. En la tabla <a href="#tbl-ejer6" class="quarto-xref">Tabla&nbsp;<span>3.10</span></a> se muestran los descriptores de la variable, junto con el nombre de la variable y su respectiva descripción.</p>
+</div>
+<div id="tbl-ejer6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ejer6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;3.10: Descriptores Cacao.
+</figcaption>
+<div aria-describedby="tbl-ejer6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 4%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Descriptores generales y botánicos</th>
+<th style="text-align: left;">Nombre Variable</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Longitud de lámina foliar (L)</td>
+<td style="text-align: left;">Longitud</td>
+<td style="text-align: left;">Haciendo uso de una regla se midió desde la base de lámina foliar hasta el ápice de la hoja. La medida se expresó en centímetros.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancho de lámina foliar</td>
+<td style="text-align: left;">Ancho</td>
+<td style="text-align: left;">Haciendo uso de una regla se midió en el punto más ancho. La medida se expresó en centímetros.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Longitud desde la base hasta el punto más ancho</td>
+<td style="text-align: left;">LBA</td>
+<td style="text-align: left;">Se determinó usando una regla y se tomó desde la base hasta el punto más ancho de la hoja. La medida se expresó en centímetros.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Relación largo-ancho</td>
+<td style="text-align: left;">RLA</td>
+<td style="text-align: left;">Se determinó con la división de la longitud de la lámina foliar entre el ancho de la lámina foliar. La medida se expresó en centímetros.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Forma de la hoja</td>
+<td style="text-align: left;">FORMA</td>
+<td style="text-align: left;">Se determinó calculado la relación entre la longitud de la lámina foliar (L) y la longitud de la hoja desde la base hasta la parte más ancha de la misma (LBA). Según el resultado se clasifica en los siguientes criterios: L/LBA &lt;2: ovalada L/LBA =2: elíptica L/LBA &gt;2: oblonga</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Forma de la base</td>
+<td style="text-align: left;">Base</td>
+<td style="text-align: left;">Se evaluó de forma visual, clasificándolas de la siguiente manera: 1. aguda, 2. redondeada, 3. cordiforme y 4. obtusa.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Forma del ápice</td>
+<td style="text-align: left;">Apice</td>
+<td style="text-align: left;">Se evaluó de forma visual, clasificándolas de la siguiente manera: 1. agudo, 2. acuminado corto y 3. acuminado largo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Accesión</td>
+<td style="text-align: left;">Accesion</td>
+<td style="text-align: left;">Contiene el código asignado a las accesiones.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nombre Accesión</td>
+<td style="text-align: left;">grupos</td>
+<td style="text-align: left;">Contiene el nombre de las accesiones</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ol type="a">
+<li>Crear un proyecto llamado <strong>PG_PO</strong>.</li>
+<li>Crear un script llamado <em>hojas.R</em>.</li>
+<li>Cargar los paquetes <em>tidyverse</em>, <em>writexl</em> y <em>readxl</em>.</li>
+<li>Cargar los datos almacenados en el archivo de Excel, los datos deben ser guardados en una variable llamada <em>fenohojas</em></li>
+<li>Identificar cuántas variables y cuántas observaciones tiene el conjunto de datos.</li>
+<li>Crear una variable llamada <em>desclong</em> que almacene la media, la mediana, la desviación, el primer cuartil y el tercer cuartil de la longitud por accesión. Guarde la tabla <em>desclong</em> en una ubicación adecuada de su proyecto con el nombre <em>lhojas.xlsx</em>. Con ayuda de la tabla <em>desclong</em> conteste ¿qué accesión tiene tiene la mayor longitud promedio?</li>
+<li>Crear una variable llamada <em>descancho</em> que almacene la media, la mediana, la desviación, el primer cuartil y el tercer cuartil del ancho por accesión. Guarde la tabla <em>descancho</em> en una ubicación adecuada de su proyecto con el nombre <em>ahojas.xlsx</em>. Con ayuda de la tabla creada, conteste ¿qué accesión tiene el valor más bajo para el segundo cuartil del ancho de la hoja?</li>
+<li>Crear una variable llamada <em>descLBA</em> que almacene la media, la mediana, la desviación, el primer cuartil y el tercer cuartil de la LBA por accesión. Guarde la tabla <em>descLBA</em> en una ubicación adecuada de su proyecto con el nombre <em>lbahojas.xlsx</em>. Con ayuda de la tabla creada, conteste ¿qué accesión tiene la mayor dispersión en la longitud desde la base hasta el punto más ancho?</li>
+<li>Crear una variable llamada <em>descRLA</em> que almacene la media, la mediana, la desviación, el primer cuartil y el tercer cuartil de la RLA por accesión. Guarde la tabla <em>descRLA</em> en una ubicación adecuada de su proyecto con el nombre <em>rlahojas.xlsx</em>. Con ayuda de la tabla creada, interprete el tercer cuartil de la accesión que tiene el primer cuartil más alto de la relación largo-ancho.</li>
+<li>Graficar histogramas para la longitud, el ancho, la LBA y la RLA por accesión. Almacénelos en la carpeta adecuada con los nombres <em>histlong.png</em>, <em>histanch.png</em>, <em>histLBA.png</em> y <em>histRLA.png</em>.</li>
+<li>Graficar diagramas de caja para la longitud, el ancho, la LBA y la RLA por accesión. Almacénelos en la carpeta adecuada con los nombres <em>boxlong.png</em>, <em>boxanch.png</em>, <em>boxLBA.png</em> y <em>boxRLA.png</em>.</li>
+<li>Con los gráficos y tablas creados, ¿cree usted que existen diferencias significativas en la longitud de las hojas por accesión? Justifique su respuesta. En los próximos capítulos aprenderemos a responder esta pregunta de manera formal, por lo pronto su respuesta se debe basar en las tablas y gráficos.</li>
+</ol>
+<div id="exr-quin3" class="theorem exercise">
+<p><span class="theorem-title"><strong>Ejercicio 3.7</strong></span> Cuando se generan cambios en la calidad o en la intensidad de la radiación receptada por la planta ocurren cambios que afectan su anatomía y fisiología, así como su crecimiento y desarrollo. En el proyecto de graduación de Gabriela Granda, se evaluó la modificación de la radiación solar para observar los efectos sobre la reflectancia foliar y el desarrollo vegetativo del cultivo de plátano, de la variedad curraré enano en 16 plantas por cada tratamiento durante 11 semanas. El primer tratamiento corresponde al tratamiento de control o <span class="math inline">\(T_1\)</span> en el cual no se aplicó ningún producto con el propósito de comparar los resultados con los demás tratamientos. En el tratamiento dos o <span class="math inline">\(T_2\)</span> se analizó el efecto de la adición de luz mediante nueve lámparas de espectro completo con el fin de utilizar la espectrometría como herramienta que facilite la determinación de algunas características espectrales en las plantas. El tratamiento tres o <span class="math inline">\(T_3\)</span> se realizó la aplicación foliar semanal de un filtro solar (compuesto por <span class="math inline">\(TiO_2\)</span> y <span class="math inline">\(ZnO\)</span>) para comparar su efecto en la diferencia de reflectancia, asimilación de pigmentos, y absorción de nutrientes y agua.</p>
+</div>
+<p>En la hoja <em>datos</em> del archivo <em>Datos23035.xlsx</em> se almacenan los datos del proyecto de graduación de Gabriela Granda. Las variables presentes en el conjunto de datos son:</p>
+<ul>
+<li><strong>Semana</strong>: semana en la que se realizó la medición.</li>
+<li><strong>Tratamiento</strong>: tratamiento observado.</li>
+<li><strong>Planta</strong>: número de planta dentro del tratamiento.</li>
+<li><strong>Altura</strong>: altura de la planta en centímetros.</li>
+<li><strong>DiametroH</strong>: diámetro horizontal del pseudotallo en centímetros.</li>
+<li><strong>DiámetroV</strong>: diámetro vertical del pseudotallo en centímetros.</li>
+<li><strong>NúmeroH</strong>: número de hojas.</li>
+</ul>
+<ol type="a">
+<li><p>Crear un proyecto llamado <strong>PG_GAGS</strong>, dentro de la carpeta adecuada guardar un script llamado <em>analisis.R</em>. Guardar el archivo <em>Datos23035.xlsx</em> en la carpeta apropiada dentro del proyecto.</p></li>
+<li><p>Cargar los paquetes <em>tidyverse</em>, <em>agricolae</em>, <em>readxl</em>, <em>writexl</em> y <em>jtools</em>.</p></li>
+<li><p>Cargar y almacenar los datos en una variable llamada <em>data23035.xlsx</em></p></li>
+<li><p>El diámetro del pseudotallo se calcula como el promedio del diámetro vertical y horizontal. Utilizando la función <em>mutate</em>, crear una variable llamada <em>Diámetro</em>.</p></li>
+<li><p>Gabriela recogió información de 11 semanas, sin embargo a partir de la semana 9 las plantas sufrieron caídas por acción del viento. Utilice la función <strong>filter</strong> para seleccionar los datos desde la semana 1 a la semana 8. Los datos filtrados se deben mantener en la variable <em>data23035</em>.</p></li>
+<li><p>En el script, crear una sección llamada <strong>Altura y diámetro</strong>. Para crear secciones puede usar la ruta <code>Code + Insert Section</code>, o desde el teclado la combinación de teclas <code>Ctrl + Shift + R</code> en Windows o <code>Cmd + Shift + R</code> en Mac.</p></li>
+<li><p>En una variable llamada <strong>stats_alt</strong> almacene la media, la mediana, la desviación, el primer cuartil y el tercer cuartil de la altura de las plantas <strong>por semana y tratamiento</strong>. Estos valores se deben almacenar en las columnas <em>Media</em>, <em>Mediana</em>, <em>Desv</em>, <em>Q1</em> y <em>Q3</em>. Con ayuda de la tabla creada, conteste las siguientes preguntas:</p>
+<ul>
+<li>En la semana 1 ¿qué tratamiento tiene la menor altura promedio?</li>
+<li>En la semana 2 ¿qué tratamiento tiene el valor más alto para el segundo cuartil de la altura?</li>
+<li>En la semana 3 ¿qué tratamiento tiene la menor dispersión en la altura?</li>
+<li>En la semana 4, interprete el primer cuartil del tratamiento que tiene el tercer cuartil más alto.</li>
+<li>En la semana 5 determine el rango intercuartílico para el tratamiento 1.</li>
+</ul></li>
+<li><p>En una variable llamada <em>stats_diam</em> almacene la media, la mediana, la desviación, el primer cuartil y el tercer cuartil del diámetro del pseudotallo de las plantas <strong>por semana y tratamiento</strong>. Estos valores se deben almacenar en las variables <em>Media</em>, <em>Mediana</em>, <em>Desv</em>, <em>Q1</em> y <em>Q3</em>.</p></li>
+<li><p>Graficar diagramas de caja para la altura de la planta y el diámetro del pseudotallo, recuerde que estos diagramas de caja deben ayudar a comparar por semana y por tratamiento. Almacénelos en la carpeta <em>graficos</em> con los nombres <em>box_altura.png</em> y <em>box_diam.png</em> con un tamaño de 8 pulgadas de ancho por 4 de altura.</p></li>
+<li><p>Realizar un gráfico de líneas para la altura mostrando la evolución a lo largo de las semanas por tratamiento. Almacénelo en la carpeta <em>graficos</em> con el nombre <em>evol_altura.png</em> con un tamaño de 6 pulgadas de ancho por 3 de altura.</p></li>
+<li><p>Utilizando las tablas y gráficos creados, ¿cree usted que existen diferencias significativas en la altura de las plantas por tratamiento a lo largo de las semanas?. Justifique su respuesta. Esta pregunta aprenderemos a responderla de manera formal en las próximas semanas, por ahora la respuesta debe basarse en lo que observa en las tablas y gráficas obtenidas.</p></li>
+<li><p>En una carpeta apropiada, guardar la tabla <em>stats_alt</em> en una hoja llamada altura y la tabla <em>stats_diam</em> en una hoja llamada diametro, en un archivo <em>estadisticas.xlsx</em>.</p></li>
+</ol>
+<div id="exr-quin4" class="theorem exercise">
+<p><span class="theorem-title"><strong>Ejercicio 3.8</strong></span> El archivo <em>datos_ng_mg.xlsx</em> pertenece al proyecto de graduación de Marianela Gamboa y Michael García en el que se evaluó la aplicación de la enmienda agrícola Biosmart Terratop con ácidos húmicos, en el desarrollo y producción del cultivo de maíz para silo, híbrido (HR-960) en el trópico húmedo de Costa Rica. Se estudió el efecto de la aplicación de ácidos húmicos sobre las características químicas del suelo, concentración de nutrientes en el tejido foliar, biometría y rendimiento del cultivo. Se buscó mejorar la capacidad de producción de forraje para ser utilizado en el proceso de ensilaje mediante el uso de ácidos húmicos. Se aplicaron tres dosis de la enmienda orgánica más un testigo: T1 (Testigo 0 kg de enmienda por ha), T2 (20 kg de enmienda por ha), T3 (60 kg de enmienda por ha) y T4 (120 kg de enmienda por ha). El área en estudio contó con cuatro repeticiones por tratamiento, en una distribución aleatoria, bajo un manejo agronómico igual. El estudio se realizó en la Unidad Académica de Producción Animal (UAPA) del campus Guácimo de la Universidad EARTH, ubicada a una altitud de 36 msnm, con una precipitación acumulada durante el ciclo del cultivo de 653.15 mm. En el archivo se encuentran las hojas <em>Base</em> y <em>Diccionario</em>. En la primera se almacenan los datos que van a ser analizados y en la segunda hoja se almacena la información sobre las variables</p>
+</div>
+<ol type="a">
+<li>Crear un proyecto llamado <em>Pg_NG_MG</em>, el proyecto debe contener las carpetas necesarias. El conjunto de datos <em>datos_ng_mg.xlsx</em> debe ser guardado en la carpeta correspongiente</li>
+<li>Crear un script llamado <em>Pg_NG_MG.R</em></li>
+<li>Cargar los paquetes <em>agricolae</em>, <em>tidyverse</em>, <em>jtools</em>, <em>readxl</em> y <em>writexl</em></li>
+<li>Leer los datos del archivo <em>datos_ng_mg.xlsx</em> y almacenarlos en una variable llamada <em>datos_ngmg</em>.</li>
+<li>Crear la variable <em>DDS</em> (Días después de siembra), restando la columna <em>Fecha_med</em> de la columna <em>Fecha_semb</em>.</li>
+<li>Para la variable Altura
+<ul>
+<li>Crear una sección llamada <em>Altura</em>.</li>
+<li>Calcule por día después de siembra y por tratamiento la media, la mediana, el rango, la varianza, la desviación y los 3 cuartiles de la altura de las plantas. Almacene los resultados en una variable llamada <em>stats_dds_alt</em>.</li>
+<li>Elabore un histograma para la altura de las plantas. Tome en cuenta que es ideal separar los histogramas por día después de siembra y por tratamiento. Guarde el histograma, en la carpeta correspondiente, con el nombre <em>hist_dds_alt.png</em>.</li>
+<li>Utilizando diagramas de caja compare la altura por variedad y día después de siembra. Guarde este gráfico, en la carpeta correspondiente con el nombre <em>box_dds_alt.png</em></li>
+<li>Realice un gráfico de líneas para la evolución de la altura promedio. Para realizar este gráfico puede usar el conjunto de datos guardado en la variable <em>stats_dds_alt</em>. Guarde el gráfico en la carpeta correspondiente con el nombre <em>evol_alt_dds.png</em></li>
+</ul></li>
+<li>Para la variable Diámetro
+<ul>
+<li>Crear una sección llamada <em>Diámetro</em>.</li>
+<li>Calcule por día después de siembra y por tratamiento la media, la mediana, el rango, la varianza, la desviación y los 3 cuartiles del diámetro de las plantas. Almacene los resultados en una variable llamada <em>stats_dds_diam</em>.</li>
+<li>Elabore un histograma para el diámetro de las plantas. Tome en cuenta que es ideal separar los histogramas por día después de siembra y por tratamiento. Guarde el histograma, en la carpeta correspondiente, con el nombre <em>hist_dds_diam.png</em>.</li>
+<li>Utilizando diagramas de caja compare el diámetro por variedad y día después de siembra. Guarde este gráfico, en la carpeta correspondiente con el nombre <em>box_dds_diam.png</em></li>
+<li>Realice un gráfico de líneas para la evolución del diámetro promedio. Para realizar este gráfico puede usar el conjunto de datos guardado en la variable <em>stats_dds_diam</em>. Guarde el gráfico en la carpeta correspondiente con el nombre <em>evol_diam_dds.png</em></li>
+</ul></li>
+<li>Guardar en la carpeta resultados, un archivo llamado <em>estadisticas.xlsx</em>. Este archivo debe tener en una hoja llamada <em>altura</em> la información de la variable <em>stats_dds_alt</em> y en una hoja llamada <em>diam</em> la información de la variable <em>stats_dds_diam</em></li>
+</ol>
 <div id="exr-seis" class="theorem exercise">
-<p><span class="theorem-title"><strong>Ejercicio 3.6</strong></span> En el proyecto de graduación desarrollado por los estudiantes Joshua Quirós y Melvin Ramírez titulado <em>Evaluación de Cuatro Híbridos Comerciales de Maíz (Zea mays L.) para Ensilaje en el Trópico Húmedo Costarricense.</em> Se evaluaron cuatro híbridos de maíz con el objetivo de producir materia fresca que se pueda destinar al proceso de ensilaje como alternativa en la alimentación bovina. Se sembraron cuatro parcelas por híbrido para un total de dieciséis parcelas. Las parcelas tenían una distribución aleatoria con la misma densidad de siembra y el mismo manejo agronómico.}</p>
+<p><span class="theorem-title"><strong>Ejercicio 3.9</strong></span> En el proyecto de graduación desarrollado por los estudiantes Joshua Quirós y Melvin Ramírez titulado <em>Evaluación de Cuatro Híbridos Comerciales de Maíz (Zea mays L.) para Ensilaje en el Trópico Húmedo Costarricense.</em> Se evaluaron cuatro híbridos de maíz con el objetivo de producir materia fresca que se pueda destinar al proceso de ensilaje como alternativa en la alimentación bovina. Se sembraron cuatro parcelas por híbrido para un total de dieciséis parcelas. Las parcelas tenían una distribución aleatoria con la misma densidad de siembra y el mismo manejo agronómico.}</p>
 <p>En este ejercicio se trabajará con los archivos <em>biometricoscosecha.xlsx</em> y <em>BIOMETRICOSMAIZ.csv</em> que contienen datos relativos a este proyecto de graduación. A continuación se describen las variables presentes en los dos conjuntos de datos.</p>
 <ol type="1">
 <li><em>biometricoscosecha.xlsx</em></li>
@@ -2469,9 +2712,11 @@ Tabla&nbsp;3.8: Diámetro de plantas de banano en centímetros.
 <li>Con el conjunto <em>descalt</em>, crear un gráfico de líneas que muestre la evolución de la altura promedio. En el eje de las <span class="math inline">\(x\)</span> debe ir la variable <em>DDS</em> y en el eje de las <span class="math inline">\(y\)</span> la media de la altura. Guardar el gráfico con el nombre <em>evolalt.png</em> con 6 pulgadas de ancho por 5 pulgadas de alto.</li>
 <li>Con el conjunto de datos previos a la cosecha crear diagramas de caja para la altura por variedad y medición. Guardar el gráfico con el nombre <em>boxalt.png</em> con 6 pulgadas de ancho por 5 pulgadas de alto.</li>
 </ol>
+<!-- -->
 <ol start="2" type="1">
 <li>Para la variable diámetro</li>
 </ol>
+<!-- -->
 <ol type="a">
 <li>Calcular la media, mediana y desviación estándar del diámetro por medición y por variedad de los datos previos a la cosecha. Almacenar el resultado en una variable llamada <em>deschibrdiam</em>.</li>
 <li>Calcular la media, mediana y desviación estándar del diámetro por variedad de los datos de la cosecha. Almacenar el resultado en una variable llamada <em>desccosediam</em>.</li>
@@ -2485,9 +2730,35 @@ Tabla&nbsp;3.8: Diámetro de plantas de banano en centímetros.
 </ol>
 
 
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
 </section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -2523,18 +2794,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2566,7 +2826,45 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -2601,7 +2899,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -2649,7 +2951,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -2877,12 +3178,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./01-concepts.html" class="pagination-link  aria-label=" &lt;span="" conceptos="" básicos.&lt;="" span&gt;"="">
+      <a href="./01-concepts.html" class="pagination-link" aria-label="Estadística. Conceptos Básicos.">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Estadística. Conceptos Básicos.</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./03-distr.html" class="pagination-link" aria-label="<span class='chapter-number'>4</span>&nbsp; <span class='chapter-title'>Distribuciones de probabilidad</span>">
+      <a href="./03-distr.html" class="pagination-link" aria-label="Distribuciones de probabilidad">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Distribuciones de probabilidad</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
