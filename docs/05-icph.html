@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>6&nbsp; Estadística Inferencial – Análisis de Datos en Agricultura con R y RStudio</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./04-sampling.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-874a94cc35be0778ec714a6aca2fed85.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1344c1620ed4191602f8ad0091617ec7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -76,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -414,23 +416,23 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
 </figcaption>
 <div aria-describedby="tbl-err-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="liwdtzzavn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#liwdtzzavn table {
+<div id="tdischxzkf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tdischxzkf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#liwdtzzavn thead, #liwdtzzavn tbody, #liwdtzzavn tfoot, #liwdtzzavn tr, #liwdtzzavn td, #liwdtzzavn th {
+#tdischxzkf thead, #tdischxzkf tbody, #tdischxzkf tfoot, #tdischxzkf tr, #tdischxzkf td, #tdischxzkf th {
   border-style: none;
 }
 
-#liwdtzzavn p {
+#tdischxzkf p {
   margin: 0;
   padding: 0;
 }
 
-#liwdtzzavn .gt_table {
+#tdischxzkf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -456,12 +458,12 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-left-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_caption {
+#tdischxzkf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#liwdtzzavn .gt_title {
+#tdischxzkf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -473,7 +475,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-bottom-width: 0;
 }
 
-#liwdtzzavn .gt_subtitle {
+#tdischxzkf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -485,7 +487,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-top-width: 0;
 }
 
-#liwdtzzavn .gt_heading {
+#tdischxzkf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -497,13 +499,13 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-right-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_bottom_border {
+#tdischxzkf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_col_headings {
+#tdischxzkf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -518,7 +520,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-right-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_col_heading {
+#tdischxzkf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -538,7 +540,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   overflow-x: hidden;
 }
 
-#liwdtzzavn .gt_column_spanner_outer {
+#tdischxzkf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -550,15 +552,15 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   padding-right: 4px;
 }
 
-#liwdtzzavn .gt_column_spanner_outer:first-child {
+#tdischxzkf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#liwdtzzavn .gt_column_spanner_outer:last-child {
+#tdischxzkf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#liwdtzzavn .gt_column_spanner {
+#tdischxzkf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -570,11 +572,11 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   width: 100%;
 }
 
-#liwdtzzavn .gt_spanner_row {
+#tdischxzkf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#liwdtzzavn .gt_group_heading {
+#tdischxzkf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -600,7 +602,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   text-align: left;
 }
 
-#liwdtzzavn .gt_empty_group_heading {
+#tdischxzkf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -615,15 +617,15 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   vertical-align: middle;
 }
 
-#liwdtzzavn .gt_from_md > :first-child {
+#tdischxzkf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#liwdtzzavn .gt_from_md > :last-child {
+#tdischxzkf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#liwdtzzavn .gt_row {
+#tdischxzkf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -642,7 +644,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   overflow-x: hidden;
 }
 
-#liwdtzzavn .gt_stub {
+#tdischxzkf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -655,7 +657,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   padding-right: 5px;
 }
 
-#liwdtzzavn .gt_stub_row_group {
+#tdischxzkf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -669,15 +671,15 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   vertical-align: top;
 }
 
-#liwdtzzavn .gt_row_group_first td {
+#tdischxzkf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#liwdtzzavn .gt_row_group_first th {
+#tdischxzkf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#liwdtzzavn .gt_summary_row {
+#tdischxzkf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -687,16 +689,16 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   padding-right: 5px;
 }
 
-#liwdtzzavn .gt_first_summary_row {
+#tdischxzkf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_first_summary_row.thick {
+#tdischxzkf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#liwdtzzavn .gt_last_summary_row {
+#tdischxzkf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -706,7 +708,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-bottom-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_grand_summary_row {
+#tdischxzkf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -716,7 +718,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   padding-right: 5px;
 }
 
-#liwdtzzavn .gt_first_grand_summary_row {
+#tdischxzkf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -726,7 +728,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-top-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_last_grand_summary_row_top {
+#tdischxzkf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -736,11 +738,11 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-bottom-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_striped {
+#tdischxzkf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#liwdtzzavn .gt_table_body {
+#tdischxzkf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -749,7 +751,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-bottom-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_footnotes {
+#tdischxzkf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -763,7 +765,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-right-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_footnote {
+#tdischxzkf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -772,7 +774,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   padding-right: 5px;
 }
 
-#liwdtzzavn .gt_sourcenotes {
+#tdischxzkf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -786,7 +788,7 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   border-right-color: #D3D3D3;
 }
 
-#liwdtzzavn .gt_sourcenote {
+#tdischxzkf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -794,77 +796,77 @@ Tabla&nbsp;6.1: Errores en las pruebas de hipótesis
   padding-right: 5px;
 }
 
-#liwdtzzavn .gt_left {
+#tdischxzkf .gt_left {
   text-align: left;
 }
 
-#liwdtzzavn .gt_center {
+#tdischxzkf .gt_center {
   text-align: center;
 }
 
-#liwdtzzavn .gt_right {
+#tdischxzkf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#liwdtzzavn .gt_font_normal {
+#tdischxzkf .gt_font_normal {
   font-weight: normal;
 }
 
-#liwdtzzavn .gt_font_bold {
+#tdischxzkf .gt_font_bold {
   font-weight: bold;
 }
 
-#liwdtzzavn .gt_font_italic {
+#tdischxzkf .gt_font_italic {
   font-style: italic;
 }
 
-#liwdtzzavn .gt_super {
+#tdischxzkf .gt_super {
   font-size: 65%;
 }
 
-#liwdtzzavn .gt_footnote_marks {
+#tdischxzkf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#liwdtzzavn .gt_asterisk {
+#tdischxzkf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#liwdtzzavn .gt_indent_1 {
+#tdischxzkf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#liwdtzzavn .gt_indent_2 {
+#tdischxzkf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#liwdtzzavn .gt_indent_3 {
+#tdischxzkf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#liwdtzzavn .gt_indent_4 {
+#tdischxzkf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#liwdtzzavn .gt_indent_5 {
+#tdischxzkf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#liwdtzzavn .katex-display {
+#tdischxzkf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#liwdtzzavn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tdischxzkf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
